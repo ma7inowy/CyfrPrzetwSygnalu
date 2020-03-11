@@ -8,7 +8,7 @@ from SygnalDyskretny import SygnalDyskretny
 
 class SynalCiagly:
     def szum_o_rozkladzie_jednostajnym(self, amplituda, t1, d):
-        # t1 - czas poczatkowy
+        # t1 - czas poczatkowyy
         # d - czas trwania sygnalu
         y = []
         x = np.linspace(t1, t1 + d, 1000)
