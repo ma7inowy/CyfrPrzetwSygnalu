@@ -73,6 +73,9 @@ class SynalCiagly:
         plt.ylabel('Amplituda')
         plt.show()
 
+        # plt.hist(y)
+        # plt.show()
+
     def sygnal_sinusoidalny_wyprostowany_dwupolowkowo(self, amplituda, okres_T, t1, d):
         y = []
         x = np.linspace(t1, t1 + d, 1000)
@@ -167,21 +170,3 @@ class SynalCiagly:
         plt.xlabel('t[s]')
         plt.ylabel('Amplituda')
         plt.show()
-
-        print("xd9")
-
-
-sc = SynalCiagly()
-# sc.szum_o_rozkladzie_jednostajnym(30, 0, 50)
-# sc.szum_gaussowski(30, 0, 50)
-# sc.sygnal_sinusoidalny(10, 7, 0, 10)
-# sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(10, 6, 0, 10)
-# sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(10, 6, 0, 10)
-# sc.sygnal_prostokatny(10,2,0,10)
-# sc.sygnal_prostokatny_symetryczny(10, 2, 0, 10)
-# sc.sygnal_trojkatny(10, 2, 0, 10)
-# sc.skok_jednostkowy(10, -10, 20)
-
-sd = SygnalDyskretny()
-# sd.impuls_jednostkowy(1, -25, 50)
-# sd.szum_impulsowy(1, 0, 50, 80)
