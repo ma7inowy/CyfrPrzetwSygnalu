@@ -142,7 +142,8 @@ class SynalCiagly:
             else:
                 wzor2 = ((-amplituda) / (okres_T * (1 - kw))) * (x[i] - k * okres_T - t1) + (amplituda / (1 - kw))
                 y.append(wzor2)
-
+        print("rtojkat X!!!")
+        print(x)
         plt.plot(x, y)
         plt.xlim(t1, t1 + d)  # od do X
         plt.xlabel('t[s]')
@@ -170,3 +171,5 @@ class SynalCiagly:
         plt.xlabel('t[s]')
         plt.ylabel('Amplituda')
         plt.show()
+
+

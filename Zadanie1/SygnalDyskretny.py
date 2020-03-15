@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import math
 
 
 class SygnalDyskretny:
@@ -13,8 +14,10 @@ class SygnalDyskretny:
         # NAWET Z NICH NIE KORZYSTAMY XDDDDDDDDDD
         y = []
         # TUTAJ INNY SPOSOB ODLEGLOSCI MIEDZY KROPKAMI! MOZE Z TEGO SKORZYSTAMY? t1+d?
-        x = np.linspace(t1, t1 + d, 100)
-        for i in range(100):
+        # ZAOKRAGLAM DO 0 BO TYLKO ZERO MA DAC 1 WIEC INNEJ OPCJI NIE WIDZE
+        zakres = int(math.fabs(t1) + d)
+        x = np.linspace(t1, t1 + d, zakres)
+        for i in range(zakres):
             if int(x[i]) == 0:
                 y.append(1)
             else:
@@ -45,3 +48,4 @@ class SygnalDyskretny:
         plt.xlabel('t[s]')
         plt.ylabel('Amplituda')
         plt.show()
+

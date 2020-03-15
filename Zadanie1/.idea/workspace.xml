@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Zadanie1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Zadanie1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wczyt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zapis.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SygnalCiagly.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalCiagly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SygnalDyskretny.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalDyskretny.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -154,6 +154,14 @@
       <option name="presentableId" value="Default" />
       <updated>1583847234385</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added menu + some problems fixed">
+      <created>1584050253200</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584050253200</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +176,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added menu + some problems fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added menu + some problems fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

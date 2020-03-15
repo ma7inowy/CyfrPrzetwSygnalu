@@ -1,3 +1,7 @@
+import os
+import sys
+import matplotlib.pyplot as plt
+import numpy as np
 from SygnalCiagly import SynalCiagly
 from SygnalDyskretny import SygnalDyskretny
 
@@ -19,6 +23,21 @@ class Main:
 
     # sd.impuls_jednostkowy(1, -25, 50)
     # sd.szum_impulsowy(1, 0, 50, 80)
+
+    def wybor_sygnalu(self):
+        print("---SYGNALY---")
+        print("1. szum_o_rozkladzie_jednostajnym")
+        print("2. szum_gaussowski")
+        print("3. sygnal_sinusoidalny")
+        print("4. sygnal_sinusoidalny_wyprostowany_jednopolowkowo")
+        print("5. sygnal_sinusoidalny_wyprostowany_dwupolowkowo")
+        print("6. sygnal_prostokatny")
+        print("7. sygnal_prostokatny_symetryczny")
+        print("8. sygnal_trojkatny")
+        print("9. skok_jednostkowy")
+        print("10. impuls_jednostkowy")
+        print("11. szum_impulsowy")
+        print("------------------")
 
     def menu_glowne(self, argument):
         sc = SynalCiagly()
@@ -71,12 +90,57 @@ class Main:
         else:
             print("NACISNIETO ZLY PRZYCISK!!!")
 
+    def wczytaj_z_pliku(self):
+        print("Wczytywanie z pliku...")
+        plik = open("wczyt.txt")
+        caly_tekst = plik.read()
+        plik.close()
+        podzial_na_linie = caly_tekst.split('\n')
+        wartosci_y = podzial_na_linie[1].split(', ')  # wspolrzedne y
+        przedzial_wartosci_x = podzial_na_linie[0].split(', ')  # tablica z dwoma wartosciami tj.(pocz. i koniec)
+        ilosc_x = len(wartosci_y)
+
+        # konwersja tablicy str na float
+        for i in range(0, len(wartosci_y)):
+            wartosci_y[i] = float(wartosci_y[i])
+
+        wartosci_x = np.linspace(int(przedzial_wartosci_x[0]), int(przedzial_wartosci_x[1]), ilosc_x)  # wspolrzedne x
+        plt.plot(wartosci_x, wartosci_y)
+        plt.xlim(int(przedzial_wartosci_x[0]), int(przedzial_wartosci_x[1]))  # od do X
+        plt.xlabel('t[s]')
+        plt.ylabel('Amplituda')
+        plt.show()
+
+    def zapisz_do_pliku(self, poczatek_przedzialu, koniec_przedzialu, wartosci_y):
+        print("Zapisywanie do pliku...")
+        plik = open("zapis.txt", "w")
+        przecinek = ", "
+        tekst = str(poczatek_przedzialu) + przecinek + str(koniec_przedzialu)
+        plik.write(tekst)
+        plik.write("\n")
+        plik.write(self.zamien_liste_w_str(wartosci_y))
+        plik.close()
+
+    def zamien_liste_w_str(self, tablica1):
+        stringg = ""
+        for i in range(len(tablica1)):
+            if i != len(tablica1)-1:
+                stringg = stringg + str(tablica1[i]) + ", "
+            else:
+                stringg = stringg + str(tablica1[i])
+        return stringg
+
 
 if __name__ == '__main__':
     main = Main()
-    inp = input('input a character : ')
-    main.menu_glowne(int(inp))
+    # main.wybor_sygnalu()
+    # inp = input('Podaj jaki sygnal chcesz rozpatrzec : ')
+    # os.system('cls')  # powinno czyscic ale moze zrobi tylko jak zrobbimy z tego skrypt
+    # main.menu_glowne(int(inp))
 
+    # main.wczytaj_z_pliku()
+    tablica = [0, 1, 2, 3, 4]
+    main.zapisz_do_pliku(0, 10, tablica)
     # chcialem ale nie dziala
 
     # switcher = {
