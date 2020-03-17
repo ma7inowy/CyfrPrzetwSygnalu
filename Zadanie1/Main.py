@@ -2,27 +2,11 @@ import os
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
-from SygnalCiagly import SynalCiagly
+from SygnalCiagly import SygnalCiagly
 from SygnalDyskretny import SygnalDyskretny
 
 
 class Main:
-
-    # sc = SynalCiagly()
-    # sc.szum_o_rozkladzie_jednostajnym(30, 0, 50)
-    # sc.szum_gaussowski(30, 0, 50)
-    # sc.sygnal_sinusoidalny(10, 7, 0, 10)
-    # sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(10, 6, 0, 10)
-    # sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(10, 6, 0, 10)
-    # sc.sygnal_prostokatny(10,2,0,10)
-    # sc.sygnal_prostokatny_symetryczny(10, 2, 0, 10)
-    # sc.sygnal_trojkatny(10, 2, 0, 10)
-    # sc.skok_jednostkowy(10, -10, 20)
-
-    # sd = SygnalDyskretny()
-
-    # sd.impuls_jednostkowy(1, -25, 50)
-    # sd.szum_impulsowy(1, 0, 50, 80)
 
     def wybor_sygnalu(self):
         print("---SYGNALY---")
@@ -40,7 +24,7 @@ class Main:
         print("------------------")
 
     def menu_glowne(self, argument):
-        sc = SynalCiagly()
+        sc = SygnalCiagly()
         sd = SygnalDyskretny()
 
         amp = int(input('Podaj amplitude : '))
@@ -48,49 +32,51 @@ class Main:
         d = int(input('Podaj czas trwania sygnalu : '))
 
         if argument == 1:
-            sc.szum_o_rozkladzie_jednostajnym(amp, t1, d)
+            # ??? czy tak chce zrobic? czy zostawic ze rysowanie w SygnalCiagly????????????????
+            sc.szum_o_rozkladzie_jednostajnym(amp, t1, d).rysuj_sygnal()
             # sc.szum_o_rozkladzie_jednostajnym(30, 0, 50),
         elif argument == 2:
-            sc.szum_gaussowski(amp, t1, d),
+            sc.szum_gaussowski(amp, t1, d).rysuj_sygnal()
             # sc.szum_gaussowski(30, 0, 50),
         elif argument == 3:
             okres_T = int(input('Podaj okres podstawowy : '))
-            sc.sygnal_sinusoidalny(amp, okres_T, t1, d)
+            sc.sygnal_sinusoidalny(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_sinusoidalny(10, 7, 0, 10),
         elif argument == 4:
             okres_T = int(input('Podaj okres podstawowy : '))
-            sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(amp, okres_T, t1, d)
+            sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(10, 6, 0, 10),
         elif argument == 5:
             okres_T = int(input('Podaj okres podstawowy : '))
-            sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(amp, okres_T, t1, d)
+            sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(10, 6, 0, 10),
         elif argument == 6:
             okres_T = int(input('Podaj okres podstawowy : '))
-            sc.sygnal_prostokatny(amp, okres_T, t1, d)
+            sc.sygnal_prostokatny(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_prostokatny(10, 2, 0, 10),
         elif argument == 7:
             okres_T = int(input('Podaj okres podstawowy : '))
-            sc.sygnal_prostokatny_symetryczny(amp, okres_T, t1, d)
+            sc.sygnal_prostokatny_symetryczny(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_prostokatny_symetryczny(10, 2, 0, 10),
         elif argument == 8:
             okres_T = int(input('Podaj okres podstawowy : '))
-            sc.sygnal_trojkatny(amp, okres_T, t1, d)
+            sc.sygnal_trojkatny(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_trojkatny(10, 2, 0, 10),
         elif argument == 9:
-            sc.skok_jednostkowy(amp, t1, d)
+            sc.skok_jednostkowy(amp, t1, d).rysuj_sygnal()
             # sc.skok_jednostkowy(10, -10, 20),
         elif argument == 10:
-            sd.impuls_jednostkowy(amp, t1, d)
+            sd.impuls_jednostkowy(amp, t1, d).rysuj_sygnal()
             # sd.impuls_jednostkowy(1, -25, 50),
         elif argument == 11:
             p = int(input('Podaj prawdopodobienstwo : '))
-            sd.szum_impulsowy(amp, t1, d, p)
+            sd.szum_impulsowy(amp, t1, d, p).rysuj_sygnal()
             # sd.szum_impulsowy(1, 0, 50, 80)
         else:
             print("NACISNIETO ZLY PRZYCISK!!!")
 
     def wczytaj_z_pliku(self):
+        # w pliku poczatek i koniec przedzialu x'ow oraz wspolrzedne y
         print("Wczytywanie z pliku...")
         plik = open("wczyt.txt")
         caly_tekst = plik.read()
@@ -124,7 +110,7 @@ class Main:
     def zamien_liste_w_str(self, tablica1):
         stringg = ""
         for i in range(len(tablica1)):
-            if i != len(tablica1)-1:
+            if i != len(tablica1) - 1:
                 stringg = stringg + str(tablica1[i]) + ", "
             else:
                 stringg = stringg + str(tablica1[i])
@@ -135,26 +121,13 @@ if __name__ == '__main__':
     main = Main()
     # main.wybor_sygnalu()
     # inp = input('Podaj jaki sygnal chcesz rozpatrzec : ')
-    # os.system('cls')  # powinno czyscic ale moze zrobi tylko jak zrobbimy z tego skrypt
+    # # os.system('cls')  # powinno czyscic ale moze zrobi tylko jak zrobbimy z tego skrypt
     # main.menu_glowne(int(inp))
+    sc = SygnalCiagly()
+
+    # dzialania na wykresach
+    sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).dzielenie(sc.sygnal_prostokatny(10, 2, 0, 10)).rysuj_histogram(10)
 
     # main.wczytaj_z_pliku()
-    tablica = [0, 1, 2, 3, 4]
-    main.zapisz_do_pliku(0, 10, tablica)
-    # chcialem ale nie dziala
-
-    # switcher = {
-    #     1: sc.szum_o_rozkladzie_jednostajnym(30, 0, 50),
-    #     2: sc.szum_gaussowski(30, 0, 50),
-    #     '3': sc.sygnal_sinusoidalny(10, 7, 0, 10),
-    #     '4': sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(10, 6, 0, 10),
-    #     '5': sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(10, 6, 0, 10),
-    #     '6': sc.sygnal_prostokatny(10, 2, 0, 10),
-    #     '7': sc.sygnal_prostokatny_symetryczny(10, 2, 0, 10),
-    #     '8': sc.sygnal_trojkatny(10, 2, 0, 10),
-    #     '9': sc.skok_jednostkowy(10, -10, 20),
-    #     '10': sd.impuls_jednostkowy(1, -25, 50),
-    #     '11': sd.szum_impulsowy(1, 0, 50, 80)
-    # }
-    #
-    # return switcher.get(argument, "nothing")
+    # tablica = [0, 1, 2, 3, 4]
+    # main.zapisz_do_pliku(0, 10, tablica)
