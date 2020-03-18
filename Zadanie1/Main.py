@@ -126,8 +126,8 @@ if __name__ == '__main__':
     sc = SygnalCiagly()
 
     # dzialania na wykresach
-    sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).dzielenie(sc.sygnal_prostokatny(10, 2, 0, 10)).rysuj_histogram(10)
-
+    # sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).dzielenie(sc.sygnal_prostokatny(10, 2, 0, 10)).rysuj_histogram(10)
+    print(sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).wariancja())
     # main.wczytaj_z_pliku()
     # tablica = [0, 1, 2, 3, 4]
     # main.zapisz_do_pliku(0, 10, tablica)

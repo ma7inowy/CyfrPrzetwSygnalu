@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 
 class Sygnal:
@@ -62,6 +63,7 @@ class Sygnal:
         if not self.sygDyskretny:
             plt.plot(self.wartosci_x, self.wartosci_y)
             plt.xlim(self.czas_poczatkowy, self.czas_poczatkowy + self.czas_trwania_sygnalu)  # od do X
+            # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x)-1])  # od do X
             plt.xlabel('t[s]')
             plt.ylabel('Amplituda')
             plt.show()
@@ -75,3 +77,42 @@ class Sygnal:
     def rysuj_histogram(self, ilosc_przedzialow):
         plt.hist(self.wartosci_y, bins=int(ilosc_przedzialow), rwidth=0.85)
         plt.show()
+
+    def wartosc_srednia(self):
+        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        suma = 0
+        for i in range(len(self.wartosci_x)):
+            suma += self.wartosci_y[i]
+        wynik = ulamek * suma
+        # print("Wartosc srednia to: ", wynik)
+        return wynik
+
+    def wartosc_bezwzgledna(self):
+        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        suma = 0
+        for i in range(len(self.wartosci_x)):
+            suma += math.fabs(self.wartosci_y[i])
+        wynik = ulamek * suma
+        # print("Wartosc srednia bezwzgledna to: ", wynik)
+        return wynik
+
+    def wartosc_skuteczna(self):
+        return math.sqrt(self.moc_srednia())
+
+    def wariancja(self):
+        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        suma = 0
+        for i in range(len(self.wartosci_x)):
+            suma += (self.wartosci_y[i] - self.wartosc_srednia()) ** 2
+        wynik = ulamek * suma
+        # print("Wartosc wariancji to : ", wynik)
+        return wynik
+
+    def moc_srednia(self):
+        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        suma = 0
+        for i in range(len(self.wartosci_x)):
+            suma += self.wartosci_y[i] ** 2  # x^2(n) to x(n) * x(n) no nie?
+        wynik = ulamek * suma
+        # print("Wartosc mocy sredniej to: ", wynik)
+        return wynik
