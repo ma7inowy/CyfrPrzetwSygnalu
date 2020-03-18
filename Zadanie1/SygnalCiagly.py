@@ -14,7 +14,7 @@ class SygnalCiagly:
         x = np.linspace(t1, t1 + d, 1000)
         for i in range(1000):
             y.append(random.randrange(-amplituda, amplituda + 1))
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def szum_gaussowski(self, amplituda, t1, d):
         # probl3m bo nigdzie nie zostaine wykorzystana amplituda i o chuj chodzi !!!
@@ -28,7 +28,7 @@ class SygnalCiagly:
         for i in range(1000):
             potega_e = -((x[i] - u) ** 2) / 2 * (odch_standard ** 2)
             y.append((1 / (odch_standard * math.sqrt(2 * math.pi))) * math.exp(potega_e))
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def sygnal_sinusoidalny(self, amplituda, okres_T, t1, d):
         # t - czas podstawowy
@@ -36,7 +36,7 @@ class SygnalCiagly:
         x = np.linspace(t1, t1 + d, 1000)
         for i in range(1000):
             y.append(amplituda * math.sin(2 * math.pi / okres_T * (x[i] - t1)))
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
         # t_duze - okres, czas trwania jednego drgania
 
     def sygnal_sinusoidalny_wyprostowany_jednopolowkowo(self, amplituda, okres_T, t1, d):
@@ -46,7 +46,7 @@ class SygnalCiagly:
             wzor = 0.5 * amplituda * (math.sin(2 * math.pi / okres_T * (x[i] - t1)) + math.fabs(
                 math.sin(2 * math.pi / okres_T * (x[i] - t1))))
             y.append(wzor)
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def sygnal_sinusoidalny_wyprostowany_dwupolowkowo(self, amplituda, okres_T, t1, d):
         y = []
@@ -54,7 +54,7 @@ class SygnalCiagly:
         for i in range(1000):
             wzor = amplituda * math.fabs(math.sin(2 * math.pi / okres_T * (x[i] - t1)))
             y.append(wzor)
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def sygnal_prostokatny(self, amplituda, okres_T, t1, d):
         y = []
@@ -67,7 +67,7 @@ class SygnalCiagly:
                 y.append(amplituda)
             else:
                 y.append(0)
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def sygnal_prostokatny_symetryczny(self, amplituda, okres_T, t1, d):
         y = []
@@ -80,7 +80,7 @@ class SygnalCiagly:
                 y.append(amplituda)
             else:
                 y.append(-amplituda)
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def sygnal_trojkatny(self, amplituda, okres_T, t1, d):
         y = []
@@ -95,7 +95,7 @@ class SygnalCiagly:
             else:
                 wzor2 = ((-amplituda) / (okres_T * (1 - kw))) * (x[i] - k * okres_T - t1) + (amplituda / (1 - kw))
                 y.append(wzor2)
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)
 
     def skok_jednostkowy(self, amplituda, t1, d):
         y = []
@@ -110,4 +110,4 @@ class SygnalCiagly:
                 y.append(amplituda * 0.5)
             else:
                 y.append(0)
-        return Sygnal(x, y, t1, d)
+        return Sygnal(x, y)

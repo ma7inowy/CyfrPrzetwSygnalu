@@ -9,18 +9,6 @@ class Sygnal:
         self.sygDyskretny = False
         self.wartosci_x = x
         self.wartosci_y = y
-        self.czas_poczatkowy = 0
-        self.czas_trwania_sygnalu = 0
-
-    # do rysowania wykresow
-    def __init__(self, x, y, t1, d):
-        # t1 - czas poczatkowyy
-        # d - czas trwania sygnalu
-        self.sygDyskretny = False
-        self.czas_poczatkowy = t1
-        self.czas_trwania_sygnalu = d
-        self.wartosci_x = x
-        self.wartosci_y = y
 
     # dodaje dany sygnal z innym
     def dodawanie(self, sygnal2):
@@ -28,7 +16,7 @@ class Sygnal:
         for i in range(len(self.wartosci_y)):
             # x[i] = self.wartosci_x[i] + sygnal2.wartosc_x[i]
             y.append(self.wartosci_y[i] + sygnal2.wartosci_y[i])
-        sygnal_nowy = Sygnal(self.wartosci_x, y, self.czas_poczatkowy, self.czas_trwania_sygnalu)
+        sygnal_nowy = Sygnal(self.wartosci_x, y)
         return sygnal_nowy
 
     def odejmowanie(self, sygnal2):
@@ -36,7 +24,7 @@ class Sygnal:
         for i in range(len(self.wartosci_y)):
             # x[i] = self.wartosci_x[i] + sygnal2.wartosc_x[i]
             y.append(self.wartosci_y[i] - sygnal2.wartosci_y[i])
-        sygnal_nowy = Sygnal(self.wartosci_x, y, self.czas_poczatkowy, self.czas_trwania_sygnalu)
+        sygnal_nowy = Sygnal(self.wartosci_x, y)
         return sygnal_nowy
 
     def mnozenie(self, sygnal2):
@@ -44,7 +32,7 @@ class Sygnal:
         for i in range(len(self.wartosci_y)):
             # x[i] = self.wartosci_x[i] + sygnal2.wartosc_x[i]
             y.append(self.wartosci_y[i] * sygnal2.wartosci_y[i])
-        sygnal_nowy = Sygnal(self.wartosci_x, y, self.czas_poczatkowy, self.czas_trwania_sygnalu)
+        sygnal_nowy = Sygnal(self.wartosci_x, y)
         return sygnal_nowy
 
     # jak 0 to 1 ??? mozna tak?
@@ -56,20 +44,19 @@ class Sygnal:
                 y.append(self.wartosci_y[i] / 1)
             else:
                 y.append(self.wartosci_y[i] / sygnal2.wartosci_y[i])
-        sygnal_nowy = Sygnal(self.wartosci_x, y, self.czas_poczatkowy, self.czas_trwania_sygnalu)
+        sygnal_nowy = Sygnal(self.wartosci_x, y)
         return sygnal_nowy
 
     def rysuj_sygnal(self):
         if not self.sygDyskretny:
             plt.plot(self.wartosci_x, self.wartosci_y)
-            plt.xlim(self.czas_poczatkowy, self.czas_poczatkowy + self.czas_trwania_sygnalu)  # od do X
-            # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x)-1])  # od do X
+            plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
             plt.xlabel('t[s]')
             plt.ylabel('Amplituda')
             plt.show()
         else:
             plt.scatter(self.wartosci_x, self.wartosci_y)
-            plt.xlim(self.czas_poczatkowy, self.czas_poczatkowy + self.czas_trwania_sygnalu)  # od do X
+            plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
             plt.xlabel('t[s]')
             plt.ylabel('Amplituda')
             plt.show()

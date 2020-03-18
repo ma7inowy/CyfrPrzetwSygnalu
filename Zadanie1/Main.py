@@ -78,7 +78,7 @@ class Main:
     def wczytaj_z_pliku(self):
         # w pliku poczatek i koniec przedzialu x'ow oraz wspolrzedne y
         print("Wczytywanie z pliku...")
-        plik = open("wczyt.txt")
+        plik = open("zapis.txt")
         caly_tekst = plik.read()
         plik.close()
         podzial_na_linie = caly_tekst.split('\n')
@@ -97,7 +97,11 @@ class Main:
         plt.ylabel('Amplituda')
         plt.show()
 
-    def zapisz_do_pliku(self, poczatek_przedzialu, koniec_przedzialu, wartosci_y):
+    def zapisz_do_pliku(self, sygnal):
+        poczatek_przedzialu = int(sygnal.wartosci_x[0])
+        koniec_przedzialu = int(sygnal.wartosci_x[len(sygnal.wartosci_x) - 1])
+        wartosci_y = sygnal.wartosci_y
+
         print("Zapisywanie do pliku...")
         plik = open("zapis.txt", "w")
         przecinek = ", "
@@ -123,11 +127,21 @@ if __name__ == '__main__':
     # inp = input('Podaj jaki sygnal chcesz rozpatrzec : ')
     # # os.system('cls')  # powinno czyscic ale moze zrobi tylko jak zrobbimy z tego skrypt
     # main.menu_glowne(int(inp))
-    sc = SygnalCiagly()
 
+    sc = SygnalCiagly()
     # dzialania na wykresach
     # sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).dzielenie(sc.sygnal_prostokatny(10, 2, 0, 10)).rysuj_histogram(10)
-    print(sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).wariancja())
+    # print(sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).wariancja())
     # main.wczytaj_z_pliku()
     # tablica = [0, 1, 2, 3, 4]
     # main.zapisz_do_pliku(0, 10, tablica)
+    syg = sc.sygnal_trojkatny(10, 2, 0, 10)
+    # main.zapisz_do_pliku(syg)
+    main.wczytaj_z_pliku()
+    # x = np.linspace(t1, t1 + d, 1000)
+    # plt.plot(syg.wartosci_x, syg.wartosci_y)
+    # plt.xlim(self.czas_poczatkowy, self.czas_poczatkowy + self.czas_trwania_sygnalu)  # od do X
+    # # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x)-1])  # od do X
+    # plt.xlabel('t[s]')
+    # plt.ylabel('Amplituda')
+    # plt.show()

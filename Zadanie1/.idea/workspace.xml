@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SygnalCiagly.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalCiagly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zapis.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584471751001</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia">
+      <created>1584529430870</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1584529430870</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,7 +201,8 @@
     <MESSAGE value="Added menu + some problems fixed" />
     <MESSAGE value="1.Added view menu&#10;2.Added saving to file and from file&#10;3.Some other small fixes" />
     <MESSAGE value="1. Added class Sygnal with methods: dodawanie, odejmowanie, mnozenie, dzielenie, rys_sygnal, rys_histogram&#10;2.In SygnalCiagly and SygnalDyskretyn every Sygnalmethod return sygnal with its coordinates" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Added class Sygnal with methods: dodawanie, odejmowanie, mnozenie, dzielenie, rys_sygnal, rys_histogram&#10;2.In SygnalCiagly and SygnalDyskretyn every Sygnalmethod return sygnal with its coordinates" />
+    <MESSAGE value="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia" />
+    <option name="LAST_COMMIT_MESSAGE" value="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
