@@ -97,10 +97,9 @@ class SygnalCiagly:
                 y.append(wzor2)
         return Sygnal(x, y)
 
-    def skok_jednostkowy(self, amplituda, t1, d):
+    def skok_jednostkowy(self, amplituda, t1, d, ts):
         y = []
-        polowa_czasu = d / 2
-        ts = t1 + polowa_czasu
+        # polowa_czasu = d / 2
         x = np.linspace(t1, t1 + d, 1000)
 
         for i in range(1000):

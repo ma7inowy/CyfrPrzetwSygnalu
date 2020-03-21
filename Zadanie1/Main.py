@@ -63,7 +63,8 @@ class Main:
             sc.sygnal_trojkatny(amp, okres_T, t1, d).rysuj_sygnal()
             # sc.sygnal_trojkatny(10, 2, 0, 10),
         elif argument == 9:
-            sc.skok_jednostkowy(amp, t1, d).rysuj_sygnal()
+            ts = int(input('Podaj współczynnik wypełnienia : '))
+            sc.skok_jednostkowy(amp, t1, d, ts).rysuj_sygnal()
             # sc.skok_jednostkowy(10, -10, 20),
         elif argument == 10:
             sd.impuls_jednostkowy(amp, t1, d).rysuj_sygnal()
@@ -130,14 +131,14 @@ if __name__ == '__main__':
 
     sc = SygnalCiagly()
     # dzialania na wykresach
-    # sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).dzielenie(sc.sygnal_prostokatny(10, 2, 0, 10)).rysuj_histogram(10)
+    # sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).dzielenie(sc.sygnal_prostokatny(10, 2, 0, 10)).rysuj_sygnal()
+    # print(sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).wariancja())
     # print(sc.szum_o_rozkladzie_jednostajnym(30, 0, 50).wariancja())
     # main.wczytaj_z_pliku()
     # tablica = [0, 1, 2, 3, 4]
     # main.zapisz_do_pliku(0, 10, tablica)
-    syg = sc.sygnal_trojkatny(10, 2, 0, 10)
-    # main.zapisz_do_pliku(syg)
-    main.wczytaj_z_pliku()
+    # sc.sygnal_trojkatny(10, 2, 0, 10).rysuj_histogram(5)
+    # main.wczytaj_z_pliku()
     # x = np.linspace(t1, t1 + d, 1000)
     # plt.plot(syg.wartosci_x, syg.wartosci_y)
     # plt.xlim(self.czas_poczatkowy, self.czas_poczatkowy + self.czas_trwania_sygnalu)  # od do X
@@ -145,3 +146,46 @@ if __name__ == '__main__':
     # plt.xlabel('t[s]')
     # plt.ylabel('Amplituda')
     # plt.show()
+
+    # sc.sygnal_prostokatny(15, 5, 0, 20).rysuj_sygnal()
+    # sc.sygnal_prostokatny(15, 5, 0, 20).rysuj_histogram(15)
+    # sc.sygnal_prostokatny(15, 5, 0, 20).pokazWynikiParametrow()
+
+    # sc.sygnal_sinusoidalny(15, 5, 0, 20).rysuj_histogram(15)
+    # sc.sygnal_sinusoidalny(15, 5, 0, 20).pokazWynikiParametrow()
+    # sc.sygnal_sinusoidalny(15, 5, 0, 20).rysuj_sygnal()
+
+    # sc.sygnal_trojkatny(15, 5, 0, 20).rysuj_sygnal()
+    # sc.sygnal_trojkatny(15, 5, 0, 20).rysuj_histogram(15)
+    # sc.sygnal_trojkatny(15, 5, 0, 20).pokazWynikiParametrow()
+
+    sd = SygnalDyskretny()
+    # sd.szum_impulsowy(15, 0, 20, 70).rysuj_sygnal()
+    # sd.szum_impulsowy(15, 0, 20, 70).rysuj_histogram(15)
+    # sd.szum_impulsowy(15, 0, 20, 70).pokazWynikiParametrow()
+    # sc.skok_jednostkowy(10, 0, 20, 3).rysuj_sygnal()
+    # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).dodawanie(sc.sygnal_prostokatny(15, 5,0,20))
+    # syg.rysuj_sygnal()
+    # syg.rysuj_histogram(15)
+    # syg.pokazWynikiParametrow()
+
+    # syg = sc.sygnal_prostokatny(15, 5, 0, 20).odejmowanie(sc.sygnal_trojkatny(15, 5, 0, 20))
+    # syg.rysuj_sygnal()
+    # syg.rysuj_histogram(15)
+    # syg.pokazWynikiParametrow()
+
+    # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).mnozenie(sc.sygnal_trojkatny(15, 5, 0, 20))
+    # syg.rysuj_sygnal()
+    # syg.rysuj_histogram(15)
+    # syg.pokazWynikiParametrow()
+    #
+    # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).dzielenie(sc.sygnal_prostokatny(15, 5, 0, 20))
+    # syg.rysuj_sygnal()
+    # syg.rysuj_histogram(15)
+    # syg.pokazWynikiParametrow()
+
+    # sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(5, 10, -5, 15).rysuj_sygnal()
+    # sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(5, 10, -5, 15).pokazWynikiParametrow()
+       # 1szum_o_rozk_jednost
+    #2szum_gauss
+    #3syg_sinus

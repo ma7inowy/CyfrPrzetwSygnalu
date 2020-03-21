@@ -66,16 +66,17 @@ class Sygnal:
         plt.show()
 
     def wartosc_srednia(self):
-        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        ulamek = 1 / (len(self.wartosci_x) - 0 + 1)
         suma = 0
-        for i in range(len(self.wartosci_x)):
+        for i in range(len(self.wartosci_y)):
             suma += self.wartosci_y[i]
         wynik = ulamek * suma
         # print("Wartosc srednia to: ", wynik)
         return wynik
 
     def wartosc_bezwzgledna(self):
-        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        # ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        ulamek = 1 / (len(self.wartosci_x) - 0 + 1)
         suma = 0
         for i in range(len(self.wartosci_x)):
             suma += math.fabs(self.wartosci_y[i])
@@ -87,7 +88,8 @@ class Sygnal:
         return math.sqrt(self.moc_srednia())
 
     def wariancja(self):
-        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        # ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        ulamek = 1 / (len(self.wartosci_x) - 0 + 1)
         suma = 0
         for i in range(len(self.wartosci_x)):
             suma += (self.wartosci_y[i] - self.wartosc_srednia()) ** 2
@@ -96,10 +98,17 @@ class Sygnal:
         return wynik
 
     def moc_srednia(self):
-        ulamek = 1 / (self.wartosci_x[len(self.wartosci_x) - 1] - self.wartosci_x[0] + 1)
+        ulamek = 1 / (len(self.wartosci_x) - 0 + 1)
         suma = 0
         for i in range(len(self.wartosci_x)):
             suma += self.wartosci_y[i] ** 2  # x^2(n) to x(n) * x(n) no nie?
         wynik = ulamek * suma
         # print("Wartosc mocy sredniej to: ", wynik)
         return wynik
+
+    def pokazWynikiParametrow(self):
+        print("Wartosc srednia to: ", self.wartosc_srednia())
+        print("Wartosc srednia bezwzgledna to: ", self.wartosc_bezwzgledna())
+        print("Wartosc skuteczna to: ", self.wartosc_skuteczna())
+        print("Wartosc wariancji to : ", self.wariancja())
+        print("Wartosc mocy sredniej to: ", self.moc_srednia())

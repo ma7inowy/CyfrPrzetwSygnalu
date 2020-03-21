@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SygnalCiagly.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalCiagly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SygnalDyskretny.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalDyskretny.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zapis.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,7 +30,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../5SEMESTR/ProgramowanieWJezykuPython/zad2/PythonLab-master/Zadanie_2/chase/Zadanie2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../5SEMESTR/ProgramowanieWJezykuPython/zad3/kod/venv/Include" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -43,7 +45,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.GUI">
+    <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Zadanie1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Zadanie1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,9 +156,11 @@
       <item itemvalue="Python.SygnalCiagly" />
       <item itemvalue="Python.SygnalDyskretny" />
       <item itemvalue="Python.Main" />
+      <item itemvalue="Python.GUI" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.GUI" />
         <item itemvalue="Python.Main" />
         <item itemvalue="Python.SygnalCiagly" />
         <item itemvalue="Python.SygnalDyskretny" />
@@ -181,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584529430870</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Small fixes in main and in Sygnal constructor">
+      <created>1584550306657</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1584550306657</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,7 +234,8 @@
     <MESSAGE value="1.Added view menu&#10;2.Added saving to file and from file&#10;3.Some other small fixes" />
     <MESSAGE value="1. Added class Sygnal with methods: dodawanie, odejmowanie, mnozenie, dzielenie, rys_sygnal, rys_histogram&#10;2.In SygnalCiagly and SygnalDyskretyn every Sygnalmethod return sygnal with its coordinates" />
     <MESSAGE value="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia" />
-    <option name="LAST_COMMIT_MESSAGE" value="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia" />
+    <MESSAGE value="Small fixes in main and in Sygnal constructor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes in main and in Sygnal constructor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -17,6 +17,7 @@ class SygnalDyskretny:
         y = []
         # TUTAJ INNY SPOSOB ODLEGLOSCI MIEDZY KROPKAMI! MOZE Z TEGO SKORZYSTAMY? t1+d?
         # ZAOKRAGLAM DO 0 BO TYLKO ZERO MA DAC 1 WIEC INNEJ OPCJI NIE WIDZE???
+        # POSTAC UOGOLNIONA???????????????????????????????????
         zakres = int(math.fabs(t1) + d)
         x = np.linspace(t1, t1 + d, zakres)
         for i in range(zakres):
@@ -25,7 +26,7 @@ class SygnalDyskretny:
             else:
                 y.append(0)
 
-        sygnal = Sygnal(x, y, t1, d)
+        sygnal = Sygnal(x, y)
         sygnal.sygDyskretny = True
         return sygnal
 
@@ -43,7 +44,6 @@ class SygnalDyskretny:
             else:
                 y.append(amplituda)
 
-        sygnal = Sygnal(x, y, t1, d)
+        sygnal = Sygnal(x, y)
         sygnal.sygDyskretny = True
         return sygnal
-
