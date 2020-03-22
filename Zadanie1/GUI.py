@@ -1,10 +1,15 @@
+import time
 from tkinter import *
+from tkinter import messagebox
 from tkinter.ttk import Combobox
 
 from Main import Main
+from Sygnal import Sygnal
 from SygnalCiagly import SygnalCiagly
+from SygnalDyskretny import SygnalDyskretny
 
 sc = SygnalCiagly()
+sd = SygnalDyskretny()
 main = Main()
 sygnal1 = ""
 sygnal2 = ""
@@ -15,22 +20,15 @@ okres1 = 0
 akcja1 = ""
 akcja2 = ""
 wynik2sygnalow = 0
-# sygnaly = {}
-# sygnaly["1szum_o_rozk_jednost"] = sc.szum_o_rozkladzie_jednostajnym(int(amp1), int(czas_pocz1), int(czas_trwania1))
-# sygnaly["2szum_gauss"] = sc.szum_gaussowski(amp1, czas_pocz1, czas_trwania1)
-
-parametry_wypelnione = False
-
-
-
-
-
+wsp_wyp1 = 0
+prawdopo1 = 0
+ilosc_przedzialow1 = 0
 
 
 def podaj_parametry():
     settings_root = Tk()
     settings_root.title("Parametry")
-    settings_root.geometry("350x250")
+    settings_root.geometry("350x350")
     settings_root.resizable(False, False)
 
     label1 = Label(settings_root, text="Amplituda: ")
@@ -48,29 +46,40 @@ def podaj_parametry():
     czas_trwania = Entry(settings_root, width=20)
     czas_trwania.grid(row=2, column=1, padx=5, pady=5)
 
-    label3 = Label(settings_root, text="Okres: ")
-    label3.grid(row=3, column=0, padx=12, pady=12)
+    label4 = Label(settings_root, text="Okres: ")
+    label4.grid(row=3, column=0, padx=12, pady=12)
     okres = Entry(settings_root, width=20)
     okres.grid(row=3, column=1, padx=5, pady=5)
 
-    # czas_pocz1 = czas_pocz.get()
+    label5 = Label(settings_root, text="Wsp. wypełnienia: ")
+    label5.grid(row=4, column=0, padx=12, pady=12)
+    wsp_wyp = Entry(settings_root, width=20)
+    wsp_wyp.grid(row=4, column=1, padx=5, pady=5)
 
-    def zatwierdz2():
-        global amp1
-        amp1 = int(amp.get())
-        global czas_pocz1
-        czas_pocz1 = int(czas_pocz.get())
-        global czas_trwania1
-        czas_trwania1 = int(czas_trwania.get())
-        global okres1
-        okres1 = int(okres.get())
-        global sygnal1
-        sygnal1 = chosen_signal.get()
-        global sygnal2
-        sygnal2 = chosen_signal2.get()
+    label6 = Label(settings_root, text="Prawdopodobieństwo: ")
+    label6.grid(row=5, column=0, padx=12, pady=12)
+    prawdopo = Entry(settings_root, width=20)
+    prawdopo.grid(row=5, column=1, padx=5, pady=5)
 
-    zatwierdz_button2 = Button(settings_root, text=" OKEJ ", command=zatwierdz2)
-    zatwierdz_button2.grid(row=4, column=1, padx=12, pady=12)
+    def zatwierdzParam():
+        try:
+            global amp1
+            amp1 = int(amp.get())
+            global czas_pocz1
+            czas_pocz1 = int(czas_pocz.get())
+            global czas_trwania1
+            czas_trwania1 = int(czas_trwania.get())
+            global okres1
+            okres1 = int(okres.get())
+            global wsp_wyp1
+            wsp_wyp1 = int(wsp_wyp.get())
+            global prawdopo1
+            prawdopo1 = int(prawdopo.get())
+        except Exception:
+            messagebox.showinfo("ERROR", 'WYPEŁNIJ WSZYSKTIE POLA!!!\n(NIEPOTRZEBNE DANE WYPEŁNIIJ: 0)')
+
+    zatwierdz_button2 = Button(settings_root, text=" AKCEPTUJ ", command=zatwierdzParam)
+    zatwierdz_button2.grid(row=6, column=1, padx=12, pady=12)
 
 
 def getSygnal1():
@@ -82,6 +91,25 @@ def getSygnal1():
         syg = sc.sygnal_sinusoidalny(amp1, okres1, czas_pocz1, czas_trwania1)
     if sygnal1 == "4syg_sinus_wypr_jedn":
         syg = sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal1 == "5syg_sinus_wypr_dwu":
+        syg = sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal1 == "6syg_prostokat":
+        syg = sc.sygnal_prostokatny(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal1 == "7syg_prostokat_sym":
+        syg = sc.sygnal_prostokatny_symetryczny(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal1 == "8syg_trojkat":
+        syg = sc.sygnal_trojkatny(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal1 == "9skok_jednost":
+        syg = sc.skok_jednostkowy(amp1, czas_pocz1, czas_trwania1, wsp_wyp1)
+    if sygnal1 == "10impuls_jedn":
+        syg = sd.impuls_jednostkowy(amp1, czas_pocz1, czas_trwania1)
+    if sygnal1 == "11szum_impuls":
+        syg = sd.szum_impulsowy(amp1, czas_pocz1, czas_trwania1, prawdopo1)
+    if sygnal1 == "12WCZYTAJ_Z_ZAPIS1.TXT":
+        syg = main.wczytaj_z_pliku("zapis1.txt")
+    if sygnal1 == "13WCZYTAJ_Z_ZAPIS2.TXT":
+        syg = main.wczytaj_z_pliku("zapis2.txt")
+
     return syg
 
 
@@ -94,6 +122,22 @@ def getSygnal2():
         syg = sc.sygnal_sinusoidalny(amp1, okres1, czas_pocz1, czas_trwania1)
     if sygnal2 == "4syg_sinus_wypr_jedn":
         syg = sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal2 == "5syg_sinus_wypr_dwu":
+        syg = sc.sygnal_sinusoidalny_wyprostowany_dwupolowkowo(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal2 == "6syg_prostokat":
+        syg = sc.sygnal_prostokatny(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal2 == "7syg_prostokat_sym":
+        syg = sc.sygnal_prostokatny_symetryczny(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal2 == "8syg_trojkat":
+        syg = sc.sygnal_trojkatny(amp1, okres1, czas_pocz1, czas_trwania1)
+    if sygnal2 == "9skok_jednost":
+        syg = sc.skok_jednostkowy(amp1, czas_pocz1, czas_trwania1, wsp_wyp1)
+    if sygnal2 == "10impuls_jedn":
+        syg = sd.impuls_jednostkowy(amp1, czas_pocz1, czas_trwania1)
+    if sygnal2 == "11szum_impuls":
+        syg = sd.szum_impulsowy(amp1, czas_pocz1, czas_trwania1, prawdopo1)
+    if sygnal2 == "12WCZYTAJ_Z_ZAPIS2.TXT":
+        syg = main.wczytaj_z_pliku("zapis2.txt")
     return syg
 
 
@@ -108,25 +152,37 @@ def rysowanie_wykresu():
 def rysowanie_histogramu():
     if sygnal2 != "WYBIERZ2":
         global wynik2sygnalow
-        wynik2sygnalow.rysuj_histogram()
+        wynik2sygnalow.rysuj_histogram(ilosc_przedzialow1)
     else:
-        getSygnal1().rysuj_histogram(15)
+        print("rysuj 1")
+        getSygnal1().rysuj_histogram(ilosc_przedzialow1)
 
 
 def zapis_do_pliku():
     if sygnal2 != "WYBIERZ2":
         global wynik2sygnalow
-        main.zapisz_do_pliku(wynik2sygnalow)
+        main.zapisz_do_pliku(wynik2sygnalow, "zapis1.txt")
     else:
-        main.zapisz_do_pliku(getSygnal1())
+        main.zapisz_do_pliku(getSygnal1(), "zapis1.txt")
+
+
+def zapis_do_pliku2():
+    if sygnal2 != "WYBIERZ2":
+        global wynik2sygnalow
+        main.zapisz_do_pliku(wynik2sygnalow, "zapis2.txt")
+    else:
+        main.zapisz_do_pliku(getSygnal1(), "zapis2.txt")
+
 
 def wykonaj_akcje2():
     if akcja2 == "RYSUJ WYKRES":
         rysowanie_wykresu()
-    if akcja2 == "RYSUJ HISTOGRAM":
+    elif akcja2 == "RYSUJ HISTOGRAM":
         rysowanie_histogramu()
-    if akcja2 == "ZAPISZ DO PLIKU":
+    elif akcja2 == "ZAPISZ DO PLIKU ZAPIS1.TXT":
         zapis_do_pliku()
+    elif akcja2 == "ZAPISZ DO PLIKU ZAPIS2.TXT":
+        zapis_do_pliku2()
 
 
 def dodawanie():
@@ -149,100 +205,125 @@ def dzielenie():
     wynik2sygnalow = getSygnal1().dzielenie(getSygnal2())
 
 
+def wyswietl_otrzymane_parametry():
+    if sygnal2 != "WYBIERZ2":
+        messagebox.showinfo("Otrzymane parametry:", wynik2sygnalow.pokazWynikiParametrow())
+    else:
+        messagebox.showinfo("Otrzymane parametry:", getSygnal1().pokazWynikiParametrow())
+
+
+# bo ten sygnal tez printuje
+
 def zatwierdz_all():
     print("amplituda", amp1)
     print("czas pocz", czas_pocz1)
     print("czas trwa", czas_trwania1)
     print("okres", okres1)
+    global sygnal1
+    sygnal1 = chosen_signal.get()
+    global sygnal2
+    sygnal2 = chosen_signal2.get()
     global akcja1
     akcja1 = chosen_action.get()
     global akcja2
     akcja2 = chosen_action2.get()
+    global ilosc_przedzialow1
+    ilosc_przedzialow1 = int(hist_box.get())
 
     if akcja1 == "DODAWANIE":
         dodawanie()
-    if akcja1 == "ODEJMOWANIE":
+    elif akcja1 == "ODEJMOWANIE":
         odejmowanie()
-    if akcja1 == "MNOZENIE":
+    elif akcja1 == "MNOZENIE":
         mnozenie()
-    if akcja1 == "DZIELENIE":
+    elif akcja1 == "DZIELENIE":
         dzielenie()
 
+    wyswietl_otrzymane_parametry()
     wykonaj_akcje2()
 
 
 root = Tk()
-root.geometry('300x400')
+root.config(background="grey")
+root.geometry('303x310')
 root.title("Sygnaly")
-root.resizable(width=False, height=False)
+root.resizable(width=True, height=True)
 
-haj = Label(root)  # pole tekstowe
-haj.grid(row=0, column=0)  # czyli gird czyli sitaka robiona (row i column to umiejscowienie na siatce)
-
-# ramka
-
-
-
-# Napis w ramce
-
-
-# input
-
-
-frame2 = Frame(root, borderwidth=4)
-frame2.grid(row=0, column=1)
-frame2.config(background="green")  # tlo ramki
-
-listbox = Listbox(root)
-listbox.grid(row=1, column=1)
-listbox.insert(0, "elo")
-listbox.insert(1, "elo2")
-listbox.insert(2, "elo3")
-listbox.insert(3, "elo4")
-# listbox.bind('<<ListboxSelect>>', on_select)
-
-
-# OPTIONS = [
-#     "Jan",
-#     "Feb",
-#     "Mar"
-# ]
-
-# variable = StringVar(frame2)
-# variable.set(OPTIONS[0])  # default value
-# clicked = StringVar()
-# menu = OptionMenu(frame2, clicked, "Monday", "Tuesday")
-# menu.grid(row=1,column=0)
-# menu.pack()
-
-# pierwszy sygnal
-chosen_signal = Combobox(frame2, width=30, state="readonly")
-chosen_signal['values'] = ("WYBIERZ1", "1szum_o_rozk_jednost", "2szum_gauss", "3syg_sinus", "4syg_sinus_wypr_jedn")
-chosen_signal.grid(row=0, column=1, padx=12, pady=12)
+chosen_signal = Combobox(root, width=25, state="readonly")
+chosen_signal['values'] = (
+    "WYBIERZ1", "1szum_o_rozk_jednost", "2szum_gauss", "3syg_sinus", "4syg_sinus_wypr_jedn", "5syg_sinus_wypr_dwu",
+    "6syg_prostokat", "7syg_prostokat_sym", "8syg_trojkat", "9skok_jednost", "10impuls_jedn", "11szum_impuls",
+    "12WCZYTAJ_Z_ZAPIS1.TXT", "13WCZYTAJ_Z_ZAPIS2.TXT")
+chosen_signal.grid(row=0, column=1, padx=5, pady=10)
 chosen_signal.current(0)
+
+signal_label = Label(root, text="WYBIERZ SYGNAŁ1: ")
+signal_label.grid(row=0, column=0, padx=1, pady=1)
+
 # drugi sygnal
-chosen_signal2 = Combobox(frame2, width=30, state="readonly")
-chosen_signal2['values'] = ("WYBIERZ2", "1szum_o_rozk_jednost", "2szum_gauss", "3syg_sinus", "4syg_sinus_wypr_jedn")
-chosen_signal2.grid(row=1, column=1, padx=12, pady=12)
+chosen_signal2 = Combobox(root, width=25, state="readonly")
+chosen_signal2['values'] = (
+    "WYBIERZ2", "1szum_o_rozk_jednost", "2szum_gauss", "3syg_sinus", "4syg_sinus_wypr_jedn", "5syg_sinus_wypr_dwu",
+    "6syg_prostokat", "7syg_prostokat_sym", "8syg_trojkat", "9skok_jednost", "10impuls_jedn", "11szum_impuls",
+    "12WCZYTAJ_Z_ZAPIS2.TXT")
+chosen_signal2.grid(row=1, column=1, padx=5, pady=10)
 chosen_signal2.current(0)
+
+signal_label2 = Label(root, text="WYBIERZ SYGNAŁ2: ")
+signal_label2.grid(row=1, column=0, padx=1, pady=1)
+
 # przycisk do ustalania parametrow
-parametry_button = Button(frame2, text=" Parametry ", command=podaj_parametry)
-parametry_button.grid(row=2, column=1, padx=12, pady=12)
+parametry_button = Button(root, text=" Parametry ", command=podaj_parametry)
+parametry_button.grid(row=2, column=1, padx=5, pady=10)
 
 # wybrana akcja
-chosen_action = Combobox(frame2, width=20, state="readonly")
+chosen_action = Combobox(root, width=25, state="readonly")
 chosen_action['values'] = ("AKCJA1", "DODAWANIE",
                            "ODEJMOWANIE", "DZIELENIE", "MNOZENIE")
-chosen_action.grid(row=3, column=1, padx=12, pady=12)
+chosen_action.grid(row=3, column=1, padx=5, pady=10)
 chosen_action.current(0)
 
-chosen_action2 = Combobox(frame2, width=20, state="readonly")
-chosen_action2['values'] = ("AKCJA", "RYSUJ WYKRES", "RYSUJ HISTOGRAM", "ZAPISZ DO PLIKU")
-chosen_action2.grid(row=4, column=1, padx=12, pady=12)
+action_label = Label(root, text="DZIAŁANIE: ")
+action_label.grid(row=3, column=0, padx=1, pady=1)
+
+chosen_action2 = Combobox(root, width=25, state="readonly")
+chosen_action2['values'] = (
+    "AKCJA2", "RYSUJ WYKRES", "RYSUJ HISTOGRAM", "ZAPISZ DO PLIKU ZAPIS1.TXT", "ZAPISZ DO PLIKU ZAPIS2.TXT")
+chosen_action2.grid(row=4, column=1, padx=5, pady=10)
 chosen_action2.current(0)
 
-# zatwierdz
-zatwierdz_button = Button(frame2, text=" ZATWIERDZ ", command=zatwierdz_all)
-zatwierdz_button.grid(row=5, column=1, padx=12, pady=12)
+action_label = Label(root, text="OPERACJA: ")
+action_label.grid(row=4, column=0, padx=1, pady=1)
 
+# zatwierdz
+uruchom_button = Button(root, text=" URUCHOM ", command=zatwierdz_all)
+uruchom_button.grid(row=6, column=1, padx=5, pady=10)
+
+hist_box = Combobox(root, width=25, state="readonly")
+hist_box['values'] = (
+    "0", "5", "10", "15", "20")
+hist_box.grid(row=5, column=1, padx=5, pady=10)
+hist_box.current(0)
+
+ilosc_przedz_label = Label(root, text="ILOŚĆ PRZEDZ.: ")
+ilosc_przedz_label.grid(row=5, column=0, padx=1, pady=1)
+
+
+def if_signal2_chosen():
+    if chosen_signal2.get() == "WYBIERZ2":
+        chosen_action.set("AKCJA1")
+        chosen_action.configure(state="disabled")
+    else:
+        chosen_action.configure(state="normal")
+
+    if chosen_action2.get() != "RYSUJ HISTOGRAM":
+        hist_box.configure(state="disabled")
+        hist_box.set("0")
+    else:
+        hist_box.configure(state="normal")
+
+    root.after(500, if_signal2_chosen)
+
+
+root.after(500, if_signal2_chosen)
 root.mainloop()

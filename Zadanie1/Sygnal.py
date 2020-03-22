@@ -107,8 +107,10 @@ class Sygnal:
         return wynik
 
     def pokazWynikiParametrow(self):
-        print("Wartosc srednia to: ", self.wartosc_srednia())
-        print("Wartosc srednia bezwzgledna to: ", self.wartosc_bezwzgledna())
-        print("Wartosc skuteczna to: ", self.wartosc_skuteczna())
-        print("Wartosc wariancji to : ", self.wariancja())
-        print("Wartosc mocy sredniej to: ", self.moc_srednia())
+        str1 = "Wartosc srednia to: " + str(self.wartosc_srednia())
+        str2 = "\nWartosc bezwzględna to: " + str(self.wartosc_bezwzgledna())
+        str3 = "\nWartosc skuteczna to: " + str(self.wartosc_skuteczna())
+        str4 = "\nWartosc wariancji to: " + str(self.wariancja())
+        str5 = "\nWartosc mocy średniej to: " + str(self.moc_srednia())
+
+        return str1 + str2 + str3 + str4 + str5

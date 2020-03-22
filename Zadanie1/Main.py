@@ -2,6 +2,8 @@ import os
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
+
+from Sygnal import Sygnal
 from SygnalCiagly import SygnalCiagly
 from SygnalDyskretny import SygnalDyskretny
 
@@ -76,10 +78,10 @@ class Main:
         else:
             print("NACISNIETO ZLY PRZYCISK!!!")
 
-    def wczytaj_z_pliku(self):
+    def wczytaj_z_pliku(self, nazwa_pliku):
         # w pliku poczatek i koniec przedzialu x'ow oraz wspolrzedne y
         print("Wczytywanie z pliku...")
-        plik = open("zapis.txt")
+        plik = open(nazwa_pliku)
         caly_tekst = plik.read()
         plik.close()
         podzial_na_linie = caly_tekst.split('\n')
@@ -92,19 +94,21 @@ class Main:
             wartosci_y[i] = float(wartosci_y[i])
 
         wartosci_x = np.linspace(int(przedzial_wartosci_x[0]), int(przedzial_wartosci_x[1]), ilosc_x)  # wspolrzedne x
-        plt.plot(wartosci_x, wartosci_y)
-        plt.xlim(int(przedzial_wartosci_x[0]), int(przedzial_wartosci_x[1]))  # od do X
-        plt.xlabel('t[s]')
-        plt.ylabel('Amplituda')
-        plt.show()
+        # plt.plot(wartosci_x, wartosci_y)
+        # plt.xlim(int(przedzial_wartosci_x[0]), int(przedzial_wartosci_x[1]))  # od do X
+        # plt.xlabel('t[s]')
+        # plt.ylabel('Amplituda')
+        # plt.show()
 
-    def zapisz_do_pliku(self, sygnal):
+        return Sygnal(wartosci_x, wartosci_y)
+
+    def zapisz_do_pliku(self, sygnal, nazwa_pliku):
         poczatek_przedzialu = int(sygnal.wartosci_x[0])
         koniec_przedzialu = int(sygnal.wartosci_x[len(sygnal.wartosci_x) - 1])
         wartosci_y = sygnal.wartosci_y
 
         print("Zapisywanie do pliku...")
-        plik = open("zapis.txt", "w")
+        plik = open(nazwa_pliku, "w")
         przecinek = ", "
         tekst = str(poczatek_przedzialu) + przecinek + str(koniec_przedzialu)
         plik.write(tekst)
@@ -189,3 +193,6 @@ if __name__ == '__main__':
        # 1szum_o_rozk_jednost
     #2szum_gauss
     #3syg_sinus
+
+    # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).pokazWynikiParametrow()
+    # print(syg)

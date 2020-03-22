@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
+    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="gui added">
+      <change afterPath="$PROJECT_DIR$/zapis1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zapis2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SygnalCiagly.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalCiagly.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SygnalDyskretny.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalDyskretny.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zapis.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +30,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../5SEMESTR/ProgramowanieWJezykuPython/zad3/kod/venv/Include" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -213,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584550306657</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="gui added">
+      <created>1584815957828</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1584815957828</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,7 +242,8 @@
     <MESSAGE value="1. Added class Sygnal with methods: dodawanie, odejmowanie, mnozenie, dzielenie, rys_sygnal, rys_histogram&#10;2.In SygnalCiagly and SygnalDyskretyn every Sygnalmethod return sygnal with its coordinates" />
     <MESSAGE value="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia" />
     <MESSAGE value="Small fixes in main and in Sygnal constructor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small fixes in main and in Sygnal constructor" />
+    <MESSAGE value="gui added" />
+    <option name="LAST_COMMIT_MESSAGE" value="gui added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
