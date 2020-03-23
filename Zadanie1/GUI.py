@@ -246,7 +246,7 @@ def zatwierdz_all():
 root = Tk()
 root.config(background="grey")
 root.geometry('303x310')
-root.title("Sygnaly")
+root.title("Gen. sygnału i szumu")
 root.resizable(width=True, height=True)
 
 chosen_signal = Combobox(root, width=25, state="readonly")

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="gui added">
-      <change afterPath="$PROJECT_DIR$/zapis1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zapis2.txt" afterDir="false" />
+    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapis1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zapis1.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584815957828</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Menu changes, added more signals, added event to mainloop">
+      <created>1584880232670</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1584880232670</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,7 +246,8 @@
     <MESSAGE value="In Sygnal added methods:&#10;wartosc_srednia,&#10;wartosc_bezwzgledna,&#10;wartosc_skuteczna,&#10;wariancja,&#10;moc_srednia" />
     <MESSAGE value="Small fixes in main and in Sygnal constructor" />
     <MESSAGE value="gui added" />
-    <option name="LAST_COMMIT_MESSAGE" value="gui added" />
+    <MESSAGE value="Menu changes, added more signals, added event to mainloop" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menu changes, added more signals, added event to mainloop" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
