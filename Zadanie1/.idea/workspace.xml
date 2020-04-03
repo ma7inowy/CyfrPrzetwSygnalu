@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../sprawko/CPSsprawkoJWRG.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Zadanie2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadanie2/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +24,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Zadanie2" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">

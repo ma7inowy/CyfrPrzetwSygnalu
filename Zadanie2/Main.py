@@ -190,9 +190,10 @@ if __name__ == '__main__':
 
     # sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(5, 10, -5, 15).rysuj_sygnal()
     # sc.sygnal_sinusoidalny_wyprostowany_jednopolowkowo(5, 10, -5, 15).pokazWynikiParametrow()
-       # 1szum_o_rozk_jednost
-    #2szum_gauss
-    #3syg_sinus
+    # 1szum_o_rozk_jednost
+    # 2szum_gauss
+    # 3syg_sinus
 
     # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).pokazWynikiParametrow()
     # print(syg)
+    sc.sygnal_sinusoidalny(5, 3, 1, 20).probkowanie(20).rysuj_sygnal()

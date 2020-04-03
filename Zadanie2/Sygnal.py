@@ -9,6 +9,8 @@ class Sygnal:
         self.sygDyskretny = False
         self.wartosci_x = x
         self.wartosci_y = y
+        # self.t1 = 0
+        # self.d = 0
 
     # dodaje dany sygnal z innym
     def dodawanie(self, sygnal2):
@@ -114,3 +116,23 @@ class Sygnal:
         str5 = "\nWartosc mocy średniej to: " + str(self.moc_srednia())
 
         return str1 + str2 + str3 + str4 + str5
+
+    # DO ZADANIA2
+
+    def probkowanie(self, czestotliwosc):
+        x = []
+        y = []
+        j = 0
+        # for i in range(self.t1, self.t1 + self.d):
+        #     x.append(j)
+        #     j += 1 / czestotliwosc
+        #
+        # for i in range(0, 1000, int(1000 / czestotliwosc)):
+        #     y.append(self.wartosci_y[i + czestotliwosc])
+        for i in range(0, 1000, czestotliwosc):
+            x.append(self.wartosci_x[i])
+            y.append(self.wartosci_y[i])
+        sygnal = Sygnal(x, y)
+        sygnal.sygDyskretny = True
+        print(sygnal.wartosci_x)
+        return sygnal

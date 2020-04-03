@@ -7,6 +7,8 @@ from Sygnal import Sygnal
 
 
 class SygnalCiagly:
+
+
     def szum_o_rozkladzie_jednostajnym(self, amplituda, t1, d):
         # t1 - czas poczatkowyy
         # d - czas trwania sygnalu
@@ -32,11 +34,17 @@ class SygnalCiagly:
 
     def sygnal_sinusoidalny(self, amplituda, okres_T, t1, d):
         # t - czas podstawowy
+        # self.t1 = t1
+        # self.d = d
         y = []
         x = np.linspace(t1, t1 + d, 1000)
         for i in range(1000):
             y.append(amplituda * math.sin(2 * math.pi / okres_T * (x[i] - t1)))
-        return Sygnal(x, y)
+
+        syg = Sygnal(x, y)
+        syg.t1 = t1
+        syg.d = d
+        return syg
         # t_duze - okres, czas trwania jednego drgania
 
     def sygnal_sinusoidalny_wyprostowany_jednopolowkowo(self, amplituda, okres_T, t1, d):
