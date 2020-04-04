@@ -1,6 +1,7 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import math
+
+from SortedSet.sorted_set import SortedSet
+import matplotlib.pyplot as plt
 
 
 class Sygnal:
@@ -122,13 +123,6 @@ class Sygnal:
     def probkowanie(self, czestotliwosc):
         x = []
         y = []
-        j = 0
-        # for i in range(self.t1, self.t1 + self.d):
-        #     x.append(j)
-        #     j += 1 / czestotliwosc
-        #
-        # for i in range(0, 1000, int(1000 / czestotliwosc)):
-        #     y.append(self.wartosci_y[i + czestotliwosc])
         for i in range(0, 1000, czestotliwosc):
             x.append(self.wartosci_x[i])
             y.append(self.wartosci_y[i])
@@ -136,3 +130,32 @@ class Sygnal:
         sygnal.sygDyskretny = True
         print(sygnal.wartosci_x)
         return sygnal
+
+    def kwantyzacja(self, czestotliwosc, poziom_kwantyzacji):
+        syg_probkowany = self.probkowanie(czestotliwosc)
+        minn = syg_probkowany.wartosci_y[0]
+        max = syg_probkowany.wartosci_y[0]
+        for i in range(len(syg_probkowany.wartosci_y)):
+            if minn > syg_probkowany.wartosci_y[i]:
+                minn = syg_probkowany.wartosci_y[i]
+            if max < syg_probkowany.wartosci_y[i]:
+                max = syg_probkowany.wartosci_y[i]
+
+        roznica = max - minn
+        lista = []
+        for i in range(poziom_kwantyzacji):
+            lista.append(minn + ((roznica / poziom_kwantyzacji) * i))
+
+        tree_set = SortedSet(lista)
+        for i in range(len(syg_probkowany.wartosci_y)):
+            # KON SIE SAM WALI WTF?!
+            y = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
+
+        syg_kwantowany = Sygnal(syg_probkowany.wartosci_x, y)
+        return syg_kwantowany
+
+    # def maxWartoscZwybranegoZakresem(self, poczatek, koniec):
+    #     list = []
+    #     for i in range(len(self.wartosci_y)):
+    #         if self.wartosci_y[i] > poczatek and self.wartosci_y[i] < koniec:
+    #             list.append(self.wartosci_y[i])

@@ -93,15 +93,15 @@ class SygnalCiagly:
     def sygnal_trojkatny(self, amplituda, okres_T, t1, d):
         y = []
         x = np.linspace(t1, t1 + d, 1000)
-        kw = okres_T / 2 / okres_T  # jaki wzor tutaj na kw?
+        kw = (okres_T / 2) / okres_T  # jaki wzor tutaj na kw?
 
         for i in range(1000):
             k = int(x[i] / okres_T)
-            if k * okres_T + t1 <= x[i] < kw * okres_T + k * okres_T + t1:
-                wzor = (amplituda / (kw * okres_T)) * (x[i] - k * okres_T - t1)
+            if ((k * okres_T) + t1) <= x[i] < ((kw * okres_T) + (k * okres_T) + t1):
+                wzor = (amplituda / (kw * okres_T)) * (x[i] - (k * okres_T) - t1)
                 y.append(wzor)
             else:
-                wzor2 = ((-amplituda) / (okres_T * (1 - kw))) * (x[i] - k * okres_T - t1) + (amplituda / (1 - kw))
+                wzor2 = ((-amplituda) / (okres_T * (1 - kw))) * (x[i] - (k * okres_T) - t1) + (amplituda / (1 - kw))
                 y.append(wzor2)
         return Sygnal(x, y)
 

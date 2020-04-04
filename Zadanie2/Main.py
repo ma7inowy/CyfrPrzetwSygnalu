@@ -196,4 +196,7 @@ if __name__ == '__main__':
 
     # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).pokazWynikiParametrow()
     # print(syg)
-    sc.sygnal_sinusoidalny(5, 3, 1, 20).probkowanie(20).rysuj_sygnal()
+    # sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(10, 5).rysuj_sygnal()
+
+    # jak jest 1 jako t0 to wywala
+    sc.sygnal_trojkatny(10, 2, 5, 40).rysuj_sygnal()
