@@ -123,7 +123,8 @@ class Sygnal:
     def probkowanie(self, czestotliwosc):
         x = []
         y = []
-        for i in range(0, 1000, czestotliwosc):
+        wartosc = int(1000/czestotliwosc)
+        for i in range(0, 1000, wartosc):
             x.append(self.wartosci_x[i])
             y.append(self.wartosci_y[i])
         sygnal = Sygnal(x, y)
@@ -159,3 +160,54 @@ class Sygnal:
     #     for i in range(len(self.wartosci_y)):
     #         if self.wartosci_y[i] > poczatek and self.wartosci_y[i] < koniec:
     #             list.append(self.wartosci_y[i])
+    def rect(self, t):
+        if abs(t) > 0.5:
+            return 0
+        elif abs(t) == 0.5:
+            return 0.5
+        else:
+            return 1
+
+    # def ekstrapolacja_pierwsz_rzedu(self, czestotliwosc_probkowania):
+    #     tablica_nowych_y = []
+    #     syg_probkowany = self.probkowanie(czestotliwosc_probkowania)
+    #     # duze_t = syg_probkowany.wartosci_x[-1]
+    #     duze_t = syg_probkowany.wartosci_x[1] - syg_probkowany.wartosci_x[0]
+    #     # x[n] - y
+    #     # i to t
+    #     for t in range(len(syg_probkowany.wartosci_x)):
+    #         suma = 0
+    #         for n in range(len(syg_probkowany.wartosci_x)):
+    #             srodek_rect = ((syg_probkowany.wartosci_x[t] - duze_t) / (2 - (n * duze_t))) / duze_t
+    #             suma += syg_probkowany.wartosci_y[n] * syg_probkowany.rect(srodek_rect)
+    #         tablica_nowych_y.append(suma)
+    #
+    #     print(tablica_nowych_y)
+    #     # print(len(syg_probkowany.wartosci_x))
+    #     syg_probkowany.wartosci_y = tablica_nowych_y
+    #     return syg_probkowany
+
+
+
+    def ekstrapolacja_pierwsz_rzedu(self, czestotliwosc):
+        wsp_x = []
+        wsp_y = []
+        czest = 1 / (czestotliwosc * 100)
+        syg_probkowany = self.probkowanie(czestotliwosc)
+        syg_probkowany.sygDyskretny = False
+        krokSygnalu = syg_probkowany.wartosci_x[1] - syg_probkowany.wartosci_x[0]
+        # for i in range(0, krokSygnalu, czest):  # przeskok na kolejny y
+        #     for j in range(i, syg_probkowany.wartosci_x[-1], czest):
+        #         wsp_x.append(syg_probkowany.wartosci_x[i])
+        #         wsp_y.append(syg_probkowany.wartosci_y[i])
+        for i in range(len(syg_probkowany.wartosci_x)):
+            licznik = syg_probkowany.wartosci_x[i]
+            while licznik < syg_probkowany.wartosci_x[i] + krokSygnalu:
+                # for j in range(syg_probkowany.wartosci_x[i], syg_probkowany.wartosci_x[i + 1], czest):
+                wsp_x.append(licznik)
+                wsp_y.append(syg_probkowany.wartosci_y[i])
+                licznik += czest
+        syg_probkowany.wartosci_x = wsp_x
+        syg_probkowany.wartosci_y = wsp_y
+
+        return syg_probkowany
