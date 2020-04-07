@@ -199,4 +199,4 @@ if __name__ == '__main__':
     # sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(10, 5).rysuj_sygnal()
 
     # jak jest 1 jako t0 to wywala
-    sc.sygnal_sinusoidalny(10, 5, 0, 10).probkowanie(10).rysuj_sygnal()
+    sc.sygnal_sinusoidalny(10, 5, 0, 10).ekstrapolacja_zerowego_rzedu(20).rysuj_sygnal()

@@ -123,7 +123,7 @@ class Sygnal:
     def probkowanie(self, czestotliwosc):
         x = []
         y = []
-        wartosc = int(1000/czestotliwosc)
+        wartosc = int(1000 / czestotliwosc)
         for i in range(0, 1000, wartosc):
             x.append(self.wartosci_x[i])
             y.append(self.wartosci_y[i])
@@ -187,27 +187,31 @@ class Sygnal:
     #     syg_probkowany.wartosci_y = tablica_nowych_y
     #     return syg_probkowany
 
-
-
-    def ekstrapolacja_pierwsz_rzedu(self, czestotliwosc):
+    def ekstrapolacja_zerowego_rzedu(self, czestotliwosc):
         wsp_x = []
         wsp_y = []
         czest = 1 / (czestotliwosc * 100)
-        syg_probkowany = self.probkowanie(czestotliwosc)
-        syg_probkowany.sygDyskretny = False
-        krokSygnalu = syg_probkowany.wartosci_x[1] - syg_probkowany.wartosci_x[0]
+        syg_ekstr_zero = self.probkowanie(czestotliwosc)
+        syg_ekstr_zero.sygDyskretny = False
+        krokSygnalu = syg_ekstr_zero.wartosci_x[1] - syg_ekstr_zero.wartosci_x[0]
         # for i in range(0, krokSygnalu, czest):  # przeskok na kolejny y
         #     for j in range(i, syg_probkowany.wartosci_x[-1], czest):
         #         wsp_x.append(syg_probkowany.wartosci_x[i])
         #         wsp_y.append(syg_probkowany.wartosci_y[i])
-        for i in range(len(syg_probkowany.wartosci_x)):
-            licznik = syg_probkowany.wartosci_x[i]
-            while licznik < syg_probkowany.wartosci_x[i] + krokSygnalu:
+        for i in range(len(syg_ekstr_zero.wartosci_x)):
+            licznik = syg_ekstr_zero.wartosci_x[i]
+            while licznik < syg_ekstr_zero.wartosci_x[i] + krokSygnalu:
                 # for j in range(syg_probkowany.wartosci_x[i], syg_probkowany.wartosci_x[i + 1], czest):
                 wsp_x.append(licznik)
-                wsp_y.append(syg_probkowany.wartosci_y[i])
+                wsp_y.append(syg_ekstr_zero.wartosci_y[i])
                 licznik += czest
-        syg_probkowany.wartosci_x = wsp_x
-        syg_probkowany.wartosci_y = wsp_y
+        syg_ekstr_zero.wartosci_x = wsp_x
+        syg_ekstr_zero.wartosci_y = wsp_y
 
-        return syg_probkowany
+        return syg_ekstr_zero
+
+    def interpolacja_pierwszego_rzedu(self, czestotliwosc):
+        syg_int_pierw_rzedu = self.probkowanie(czestotliwosc)
+        syg_int_pierw_rzedu.sygDyskretny = False
+
+        return syg_int_pierw_rzedu

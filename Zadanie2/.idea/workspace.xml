@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -235,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586018723925</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="1. In class Sygnal added method ekstrapolacja_pierw_rzedu">
+      <created>1586263393144</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1586263393144</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,6 +268,7 @@
     <MESSAGE value="small changes" />
     <MESSAGE value="1. Method probkowanie added" />
     <MESSAGE value="1. In class Sygnal added method kwantyzacja" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. In class Sygnal added method kwantyzacja" />
+    <MESSAGE value="1. In class Sygnal added method ekstrapolacja_pierw_rzedu" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. In class Sygnal added method ekstrapolacja_pierw_rzedu" />
   </component>
 </project>
