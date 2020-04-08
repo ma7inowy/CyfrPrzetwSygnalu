@@ -1,5 +1,5 @@
 import math
-
+import numpy as np
 from SortedSet.sorted_set import SortedSet
 import matplotlib.pyplot as plt
 
@@ -132,86 +132,106 @@ class Sygnal:
         print(sygnal.wartosci_x)
         return sygnal
 
+    # COS JEST NIE TAK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     def kwantyzacja(self, czestotliwosc, poziom_kwantyzacji):
         syg_probkowany = self.probkowanie(czestotliwosc)
         minn = syg_probkowany.wartosci_y[0]
-        max = syg_probkowany.wartosci_y[0]
+        maxx = syg_probkowany.wartosci_y[0]
         for i in range(len(syg_probkowany.wartosci_y)):
             if minn > syg_probkowany.wartosci_y[i]:
                 minn = syg_probkowany.wartosci_y[i]
-            if max < syg_probkowany.wartosci_y[i]:
-                max = syg_probkowany.wartosci_y[i]
+            if maxx < syg_probkowany.wartosci_y[i]:
+                maxx = syg_probkowany.wartosci_y[i]
 
-        roznica = max - minn
+        roznica = maxx - minn
         lista = []
+        lista_y = []
         for i in range(poziom_kwantyzacji):
             lista.append(minn + ((roznica / poziom_kwantyzacji) * i))
 
         tree_set = SortedSet(lista)
         for i in range(len(syg_probkowany.wartosci_y)):
-            # KON SIE SAM WALI WTF?!
             y = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
 
-        syg_kwantowany = Sygnal(syg_probkowany.wartosci_x, y)
-        return syg_kwantowany
+        lista_y.append(y)
 
-    # def maxWartoscZwybranegoZakresem(self, poczatek, koniec):
-    #     list = []
-    #     for i in range(len(self.wartosci_y)):
-    #         if self.wartosci_y[i] > poczatek and self.wartosci_y[i] < koniec:
-    #             list.append(self.wartosci_y[i])
+        syg_probkowany.wartosci_y = lista_y
+        return syg_probkowany
+
     def rect(self, t):
-        if abs(t) > 0.5:
+        if np.math.fabs(t) > 0.5:
             return 0
-        elif abs(t) == 0.5:
+        elif np.math.fabs(t) == 0.5:
             return 0.5
         else:
             return 1
 
-    # def ekstrapolacja_pierwsz_rzedu(self, czestotliwosc_probkowania):
-    #     tablica_nowych_y = []
-    #     syg_probkowany = self.probkowanie(czestotliwosc_probkowania)
-    #     # duze_t = syg_probkowany.wartosci_x[-1]
-    #     duze_t = syg_probkowany.wartosci_x[1] - syg_probkowany.wartosci_x[0]
-    #     # x[n] - y
-    #     # i to t
-    #     for t in range(len(syg_probkowany.wartosci_x)):
-    #         suma = 0
-    #         for n in range(len(syg_probkowany.wartosci_x)):
-    #             srodek_rect = ((syg_probkowany.wartosci_x[t] - duze_t) / (2 - (n * duze_t))) / duze_t
-    #             suma += syg_probkowany.wartosci_y[n] * syg_probkowany.rect(srodek_rect)
-    #         tablica_nowych_y.append(suma)
+    def ekstrapolacja_zerowego_rzeduNaj(self, czestotliwosc_probkowania):
+        tablica_nowych_y = []
+        tablica_nowych_x = []
+        syg_probkowany = self.probkowanie(czestotliwosc_probkowania)
+        syg_probkowany.sygDyskretny = False
+        duze_t = (syg_probkowany.wartosci_x[1] - syg_probkowany.wartosci_x[0])  # krok sygnalu
+        t = syg_probkowany.wartosci_x[0]
+        while t < syg_probkowany.wartosci_x[-1]:
+            suma = 0.0
+            for n in range(len(syg_probkowany.wartosci_x)):
+                srodek_rect = (t - (duze_t / 2) - (n * duze_t)) / duze_t
+                suma += syg_probkowany.wartosci_y[n] * syg_probkowany.rect(srodek_rect)
+            tablica_nowych_y.append(suma)
+            tablica_nowych_x.append(t)
+            t += 1 / czestotliwosc_probkowania
+
+        syg_probkowany.wartosci_x = tablica_nowych_x
+        syg_probkowany.wartosci_y = tablica_nowych_y
+
+        return syg_probkowany
+
+    # TEN WZOR TEZ OKEJ ALE NIE JEST ROBIONE ZE WZORU
+
+    # def ekstrapolacja_zerowego_rzedu(self, czestotliwosc):
+    #     wsp_x = []
+    #     wsp_y = []
+    #     czest = 1 / (czestotliwosc * 100)
+    #     syg_ekstr_zero = self.probkowanie(czestotliwosc)
+    #     syg_ekstr_zero.sygDyskretny = False
+    #     krokSygnalu = syg_ekstr_zero.wartosci_x[1] - syg_ekstr_zero.wartosci_x[0]
+    #     # for i in range(0, krokSygnalu, czest):  # przeskok na kolejny y
+    #     #     for j in range(i, syg_probkowany.wartosci_x[-1], czest):
+    #     #         wsp_x.append(syg_probkowany.wartosci_x[i])
+    #     #         wsp_y.append(syg_probkowany.wartosci_y[i])
+    #     for i in range(len(syg_ekstr_zero.wartosci_x)):
+    #         licznik = syg_ekstr_zero.wartosci_x[i]
+    #         while licznik < syg_ekstr_zero.wartosci_x[i] + krokSygnalu:
+    #             # for j in range(syg_probkowany.wartosci_x[i], syg_probkowany.wartosci_x[i + 1], czest):
+    #             wsp_x.append(licznik)
+    #             wsp_y.append(syg_ekstr_zero.wartosci_y[i])
+    #             licznik += czest
+    #     syg_ekstr_zero.wartosci_x = wsp_x
+    #     syg_ekstr_zero.wartosci_y = wsp_y
     #
-    #     print(tablica_nowych_y)
-    #     # print(len(syg_probkowany.wartosci_x))
-    #     syg_probkowany.wartosci_y = tablica_nowych_y
-    #     return syg_probkowany
+    #     return syg_ekstr_zero
 
-    def ekstrapolacja_zerowego_rzedu(self, czestotliwosc):
-        wsp_x = []
-        wsp_y = []
-        czest = 1 / (czestotliwosc * 100)
-        syg_ekstr_zero = self.probkowanie(czestotliwosc)
-        syg_ekstr_zero.sygDyskretny = False
-        krokSygnalu = syg_ekstr_zero.wartosci_x[1] - syg_ekstr_zero.wartosci_x[0]
-        # for i in range(0, krokSygnalu, czest):  # przeskok na kolejny y
-        #     for j in range(i, syg_probkowany.wartosci_x[-1], czest):
-        #         wsp_x.append(syg_probkowany.wartosci_x[i])
-        #         wsp_y.append(syg_probkowany.wartosci_y[i])
-        for i in range(len(syg_ekstr_zero.wartosci_x)):
-            licznik = syg_ekstr_zero.wartosci_x[i]
-            while licznik < syg_ekstr_zero.wartosci_x[i] + krokSygnalu:
-                # for j in range(syg_probkowany.wartosci_x[i], syg_probkowany.wartosci_x[i + 1], czest):
-                wsp_x.append(licznik)
-                wsp_y.append(syg_ekstr_zero.wartosci_y[i])
-                licznik += czest
-        syg_ekstr_zero.wartosci_x = wsp_x
-        syg_ekstr_zero.wartosci_y = wsp_y
+    def tri(self, t):
+        return 0 if np.math.fabs(t) > 1 else 1 - np.math.fabs(t)
 
-        return syg_ekstr_zero
-
-    def interpolacja_pierwszego_rzedu(self, czestotliwosc):
+    def interpolacja_pierwszego_rzeduNaj(self, czestotliwosc):
         syg_int_pierw_rzedu = self.probkowanie(czestotliwosc)
         syg_int_pierw_rzedu.sygDyskretny = False
+        duze_t = syg_int_pierw_rzedu.wartosci_x[1] - syg_int_pierw_rzedu.wartosci_x[0]  # krok sygnalu
+        tablica_nowych_x = []
+        tablica_nowych_y = []
+        t = syg_int_pierw_rzedu.wartosci_x[0]
+
+        while t < syg_int_pierw_rzedu.wartosci_x[-1]:
+            suma = 0.0
+            for i in range(len(syg_int_pierw_rzedu.wartosci_x)):
+                suma += syg_int_pierw_rzedu.wartosci_y[i] * syg_int_pierw_rzedu.tri((t - i * duze_t) / duze_t)
+            tablica_nowych_x.append(t)
+            tablica_nowych_y.append(suma)
+            t += 1 / czestotliwosc
+
+        syg_int_pierw_rzedu.wartosci_x = tablica_nowych_x
+        syg_int_pierw_rzedu.wartosci_y = tablica_nowych_y
 
         return syg_int_pierw_rzedu
