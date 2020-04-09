@@ -136,27 +136,40 @@ class Sygnal:
     def kwantyzacja(self, czestotliwosc, poziom_kwantyzacji):
         syg_probkowany = self.probkowanie(czestotliwosc)
         minn = syg_probkowany.wartosci_y[0]
+        max = syg_probkowany.wartosci_y[0]
         maxx = syg_probkowany.wartosci_y[0]
         for i in range(len(syg_probkowany.wartosci_y)):
             if minn > syg_probkowany.wartosci_y[i]:
                 minn = syg_probkowany.wartosci_y[i]
+            if max < syg_probkowany.wartosci_y[i]:
+                max = syg_probkowany.wartosci_y[i]
             if maxx < syg_probkowany.wartosci_y[i]:
                 maxx = syg_probkowany.wartosci_y[i]
 
         roznica = maxx - minn
         lista = []
-        lista_y = []
+        ###
+        nowe_x = []
+        nowe_y = []
+        ###
         for i in range(poziom_kwantyzacji):
             lista.append(minn + ((roznica / poziom_kwantyzacji) * i))
 
         tree_set = SortedSet(lista)
         for i in range(len(syg_probkowany.wartosci_y)):
+            # KON SIE SAM WALI WTF?!
             y = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
 
-        lista_y.append(y)
+        for i in range(len(syg_probkowany.wartosci_x) - 1):
+            nowe_x.append(syg_probkowany.wartosci_x[i])
+            nowe_y.append(y[i])
 
-        syg_probkowany.wartosci_y = lista_y
-        return syg_probkowany
+            nowe_x.append(syg_probkowany.wartosci_x[i + 1])
+            nowe_y.append(y[i])
+
+        syg_kwantowany = Sygnal(nowe_x, nowe_y)
+
+        return syg_kwantowany
 
     def rect(self, t):
         if np.math.fabs(t) > 0.5:
@@ -235,3 +248,28 @@ class Sygnal:
         syg_int_pierw_rzedu.wartosci_y = tablica_nowych_y
 
         return syg_int_pierw_rzedu
+
+    @staticmethod
+    def sinc(t):
+        if t == 0:
+            return 1
+        else:
+            return math.sin(math.pi * t) / (math.pi * t)
+
+    def rekonstrukcja_w_oparciu_o_fun_sinc(self, czestotliwosc):
+        syg_probkowany = self.probkowanie(czestotliwosc)
+
+        przedzial_czasowy = syg_probkowany.wartosci_x[1] - syg_probkowany.wartosci_x[0]
+        nowa_lista_y = []
+        nowa_lista_x = []
+        t = syg_probkowany.wartosci_x[0]
+        while t < syg_probkowany.wartosci_x[-1] + (1.0 / (1.5 * czestotliwosc)):
+            sum = 0.0
+            for i in range(len(syg_probkowany.wartosci_x)):
+                arg = t / przedzial_czasowy - i
+                sum += syg_probkowany.wartosci_y[i] * Sygnal.sinc(arg)
+            nowa_lista_x.append(t)
+            nowa_lista_y.append(sum)
+            t += 1 / czestotliwosc
+
+        return Sygnal(nowa_lista_x, nowa_lista_y)
