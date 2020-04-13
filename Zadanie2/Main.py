@@ -198,5 +198,4 @@ if __name__ == '__main__':
     # print(syg)
     # sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(10, 5).rysuj_sygnal()
 
-    # jak jest 1 jako t0 to wywala
-    sc.sygnal_trojkatny(10, 5, 0, 10).rekonstrukcja_w_oparciu_o_fun_sinc(30).rysuj_sygnal()
+    sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(100,5).rysuj_sygnal()

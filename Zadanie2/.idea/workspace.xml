@@ -256,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586344941949</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="1. In class Sygnal added method rekonstrukcja_w_oparciu_o_fun_sinc">
+      <created>1586424426428</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1586424426428</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,6 +293,8 @@
     <MESSAGE value="1. In class Sygnal added method ekstrapolacja_pierw_rzedu" />
     <MESSAGE value="1. In class Sygnal added method ekstrapolacja_zerowego_rzedu and interpolacja_pierwzsego_rzedu" />
     <MESSAGE value="1. In class Sygnal added method ekstrapolacja_zerowego_rzeduNaj and interpolacja_pierwzsego_rzeduNaj - best opptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. In class Sygnal added method ekstrapolacja_zerowego_rzeduNaj and interpolacja_pierwzsego_rzeduNaj - best opptions" />
+    <MESSAGE value="1. In class Sygnal added method rekonstrukcja_w_oparciu_o_fun_sinc" />
+    <MESSAGE value="In class Sygnal, fixed kwantyzacja() (znajdz_max_z_przedzialu) and added blad_sredniokwadratowy" />
+    <option name="LAST_COMMIT_MESSAGE" value="In class Sygnal, fixed kwantyzacja() (znajdz_max_z_przedzialu) and added blad_sredniokwadratowy" />
   </component>
 </project>

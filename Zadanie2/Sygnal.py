@@ -1,7 +1,9 @@
 import math
 import numpy as np
-from SortedSet.sorted_set import SortedSet
+import SortedSet
 import matplotlib.pyplot as plt
+
+skok_probkowania = 0
 
 
 class Sygnal:
@@ -124,7 +126,11 @@ class Sygnal:
         x = []
         y = []
         wartosc = int(1000 / czestotliwosc)
+        global skok_probkowania
+        skok_probkowania = wartosc
+        print("WARTOSC" + str(wartosc))
         for i in range(0, 1000, wartosc):
+            print(i)
             x.append(self.wartosci_x[i])
             y.append(self.wartosci_y[i])
         sygnal = Sygnal(x, y)
@@ -132,9 +138,29 @@ class Sygnal:
         print(sygnal.wartosci_x)
         return sygnal
 
-    # COS JEST NIE TAK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    def znajdz_max_z_przedzialu(self, lista, poczatek, koniec):
+        temp_list = []
+        for i in range(len(lista)):
+            if poczatek <= lista[i] <= koniec:
+                temp_list.append(lista[i])
+
+        nowy_y = max(temp_list)
+
+        return nowy_y
+
+
+    # COS JEST NIE TAK!
     def kwantyzacja(self, czestotliwosc, poziom_kwantyzacji):
+
+        # syg_probkowany = self.probkowanie(czestotliwosc)
+        # result_y = []
+        #
+        # for i in range(len(syg_probkowany.wartosci_x)):
+        #     for j in range(int(len(self.wartosci_x) / len(syg_probkowany.wartosci_x))):
+        #         result_y.append(syg_probkowany.wartosci_y)
+
         syg_probkowany = self.probkowanie(czestotliwosc)
+        # syg_probkowany.sygDyskretny = False
         minn = syg_probkowany.wartosci_y[0]
         max = syg_probkowany.wartosci_y[0]
         maxx = syg_probkowany.wartosci_y[0]
@@ -151,25 +177,39 @@ class Sygnal:
         ###
         nowe_x = []
         nowe_y = []
+
         ###
         for i in range(poziom_kwantyzacji):
             lista.append(minn + ((roznica / poziom_kwantyzacji) * i))
 
-        tree_set = SortedSet(lista)
-        for i in range(len(syg_probkowany.wartosci_y)):
-            # KON SIE SAM WALI WTF?!
-            y = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
-
-        for i in range(len(syg_probkowany.wartosci_x) - 1):
+        lista.sort()
+        # print("LISTA:")
+        # print(lista)
+        # print(syg_probkowany.wartosci_y)
+        for i in range(len(syg_probkowany.wartosci_x)):
+            temp_y = self.znajdz_max_z_przedzialu(lista, -100, syg_probkowany.wartosci_y[i])
             nowe_x.append(syg_probkowany.wartosci_x[i])
-            nowe_y.append(y[i])
+            nowe_y.append(temp_y)
 
-            nowe_x.append(syg_probkowany.wartosci_x[i + 1])
-            nowe_y.append(y[i])
+        syg_probkowany.wartosci_y = nowe_y
+        syg_probkowany.wartosci_x = nowe_x
 
-        syg_kwantowany = Sygnal(nowe_x, nowe_y)
+        return syg_probkowany
 
-        return syg_kwantowany
+        # KON SIE SAM WALI WTF?!
+        # y = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
+
+        # for i in range(len(syg_probkowany.wartosci_x) - 1):
+        #     nowe_x.append(syg_probkowany.wartosci_x[i])
+        #     nowe_y.append(y[i])
+
+        # nowe_x.append(syg_probkowany.wartosci_x[i + 1])
+        # nowe_y.append(y[i])
+
+        # syg_kwantowany = Sygnal(nowe_x, nowe_y)
+
+        # syg_kwantowany = Sygnal(syg_probkowany.wartosci_x, y)
+        # return syg_kwantowany
 
     def rect(self, t):
         if np.math.fabs(t) > 0.5:
@@ -273,3 +313,20 @@ class Sygnal:
             t += 1 / czestotliwosc
 
         return Sygnal(nowa_lista_x, nowa_lista_y)
+
+    @staticmethod
+    def blad_sredniokwadratowy(syg_oryginalny, syg_kwantowany):
+        ilosc_pktow = len(syg_kwantowany.wartosci_x)
+        suma = 0
+        for i in range(ilosc_pktow):
+            suma += (syg_kwantowany.wartosci_y[i] - syg_oryginalny.wartosci_y[i]) ^ 2
+
+        return suma / ilosc_pktow
+
+    def stosunek_sygnal_szum(self):
+        return "ssszum"
+
+    def maksymalna_roznica(self):
+        return "max roznica"
+
+
