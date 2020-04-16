@@ -96,7 +96,7 @@ class SygnalCiagly:
         kw = (okres_T / 2) / okres_T  # jaki wzor tutaj na kw?
 
         for i in range(1000):
-            k = int(x[i] / okres_T)
+            k = int((x[i] - t1) / okres_T)
             if ((k * okres_T) + t1) <= x[i] < ((kw * okres_T) + (k * okres_T) + t1):
                 wzor = (amplituda / (kw * okres_T)) * (x[i] - (k * okres_T) - t1)
                 y.append(wzor)

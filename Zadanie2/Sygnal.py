@@ -160,6 +160,7 @@ class Sygnal:
         #         result_y.append(syg_probkowany.wartosci_y)
 
         syg_probkowany = self.probkowanie(czestotliwosc)
+        syg_probkowany.sygDyskretny = False
         # syg_probkowany.sygDyskretny = False
         minn = syg_probkowany.wartosci_y[0]
         max = syg_probkowany.wartosci_y[0]
@@ -316,10 +317,12 @@ class Sygnal:
 
     @staticmethod
     def blad_sredniokwadratowy(syg_oryginalny, syg_kwantowany):
+
         ilosc_pktow = len(syg_kwantowany.wartosci_x)
+
         suma = 0
         for i in range(ilosc_pktow):
-            suma += (syg_kwantowany.wartosci_y[i] - syg_oryginalny.wartosci_y[i]) ^ 2
+            suma += (syg_kwantowany.wartosci_y[i] - syg_oryginalny.wartosci_y[i]) ** 2
 
         return suma / ilosc_pktow
 

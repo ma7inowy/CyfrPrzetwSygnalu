@@ -197,5 +197,9 @@ if __name__ == '__main__':
     # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).pokazWynikiParametrow()
     # print(syg)
     # sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(10, 5).rysuj_sygnal()
+    sc.sygnal_trojkatny(30, 5, 5, 30).rysuj_sygnal()
 
-    sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(100,5).rysuj_sygnal()
+    # sc.sygnal_trojkatny(10, 10, 1, 30).kwantyzacja(100, 15).rysuj_sygnal()
+    syg_kwant = sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(80, 15)
+    syg_prob = sc.sygnal_trojkatny(15, 5, 0, 20).probkowanie(80)
+    print(Sygnal.blad_sredniokwadratowy(syg_prob, syg_kwant))
