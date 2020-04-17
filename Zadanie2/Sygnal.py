@@ -2,6 +2,7 @@ import math
 import numpy as np
 import SortedSet
 import matplotlib.pyplot as plt
+import cmath
 
 skok_probkowania = 0
 
@@ -128,14 +129,14 @@ class Sygnal:
         wartosc = int(1000 / czestotliwosc)
         global skok_probkowania
         skok_probkowania = wartosc
-        print("WARTOSC" + str(wartosc))
+        # print("WARTOSC" + str(wartosc))
         for i in range(0, 1000, wartosc):
-            print(i)
+            # print(i)
             x.append(self.wartosci_x[i])
             y.append(self.wartosci_y[i])
         sygnal = Sygnal(x, y)
         sygnal.sygDyskretny = True
-        print(sygnal.wartosci_x)
+        # print(sygnal.wartosci_x)
         return sygnal
 
     def znajdz_max_z_przedzialu(self, lista, poczatek, koniec):
@@ -148,7 +149,6 @@ class Sygnal:
 
         return nowy_y
 
-
     # COS JEST NIE TAK!
     def kwantyzacja(self, czestotliwosc, poziom_kwantyzacji):
 
@@ -160,7 +160,7 @@ class Sygnal:
         #         result_y.append(syg_probkowany.wartosci_y)
 
         syg_probkowany = self.probkowanie(czestotliwosc)
-        syg_probkowany.sygDyskretny = False
+        # syg_probkowany.sygDyskretny = False
         # syg_probkowany.sygDyskretny = False
         minn = syg_probkowany.wartosci_y[0]
         max = syg_probkowany.wartosci_y[0]
@@ -220,6 +220,7 @@ class Sygnal:
         else:
             return 1
 
+    # cos moze byc nie tak, bo dziwne te krzeselka wychodza
     def ekstrapolacja_zerowego_rzeduNaj(self, czestotliwosc_probkowania):
         tablica_nowych_y = []
         tablica_nowych_x = []
@@ -304,7 +305,8 @@ class Sygnal:
         nowa_lista_y = []
         nowa_lista_x = []
         t = syg_probkowany.wartosci_x[0]
-        while t < syg_probkowany.wartosci_x[-1] + (1.0 / (1.5 * czestotliwosc)):
+        # while t < syg_probkowany.wartosci_x[-1] + (1.0 / (1.5 * czestotliwosc)):
+        while t < syg_probkowany.wartosci_x[-1]:
             sum = 0.0
             for i in range(len(syg_probkowany.wartosci_x)):
                 arg = t / przedzial_czasowy - i
@@ -315,6 +317,7 @@ class Sygnal:
 
         return Sygnal(nowa_lista_x, nowa_lista_y)
 
+    # syg probkowany do syg kwantowanego?
     @staticmethod
     def blad_sredniokwadratowy(syg_oryginalny, syg_kwantowany):
 
@@ -326,10 +329,22 @@ class Sygnal:
 
         return suma / ilosc_pktow
 
-    def stosunek_sygnal_szum(self):
-        return "ssszum"
+    # syg probkowany do syg kwantowanego?
+    @staticmethod
+    def stosunek_sygnal_szum(syg_oryginalny, syg_kwantowany):
+        licznik = 0
+        mianownik = 0
+        for i in range(len(syg_oryginalny.wartosci_y)):
+            licznik += syg_oryginalny.wartosci_y[i] ** 2
+            mianownik += (syg_oryginalny.wartosci_y[i] - syg_kwantowany.wartosci_y[i]) ** 2
 
-    def maksymalna_roznica(self):
-        return "max roznica"
+        wynik = 10 * cmath.log(licznik / mianownik, 10)
 
-
+        return wynik
+    @staticmethod
+    def maksymalna_roznica(syg_oryginalny, syg_kwantowany):
+        max = math.fabs(syg_oryginalny.wartosci_y[0] - syg_kwantowany.wartosci_y[0])
+        for i in range(1,len(syg_oryginalny.wartosci_y)):
+            if max < math.fabs(syg_oryginalny.wartosci_y[i] - syg_kwantowany.wartosci_y[i]):
+                max = math.fabs(syg_oryginalny.wartosci_y[i] - syg_kwantowany.wartosci_y[i])
+        return max
