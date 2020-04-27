@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
+    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
@@ -41,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.GUI">
     <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Zadanie1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,8 +149,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Main" />
         <item itemvalue="Python.GUI" />
+        <item itemvalue="Python.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -277,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587063955716</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica">
+      <created>1587148693386</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1587148693386</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,6 +317,7 @@
     <MESSAGE value="1. In class Sygnal added method rekonstrukcja_w_oparciu_o_fun_sinc" />
     <MESSAGE value="In class Sygnal, fixed kwantyzacja() (znajdz_max_z_przedzialu) and added blad_sredniokwadratowy" />
     <MESSAGE value="In class SygnalCiagly, fixed sygnal_trojkatny() method ! ! !" />
-    <option name="LAST_COMMIT_MESSAGE" value="In class SygnalCiagly, fixed sygnal_trojkatny() method ! ! !" />
+    <MESSAGE value="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica" />
+    <option name="LAST_COMMIT_MESSAGE" value="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica" />
   </component>
 </project>

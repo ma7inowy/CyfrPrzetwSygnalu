@@ -204,11 +204,85 @@ if __name__ == '__main__':
     print("XD")
     # print(len(sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(70, 5).wartosci_y))
     # print(len(sc.sygnal_trojkatny(15, 5, 0, 20).probkowanie(70).wartosci_y))
-    sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(80, 4).rysuj_sygnal()
-    # print(len(sc.sygnal_trojkatny(15, 5, 0, 20).interpolacja_pierwszego_rzeduNaj(70).wartosci_y))
-    # print(len(sc.sygnal_trojkatny(15, 5, 0, 20).rekonstrukcja_w_oparciu_o_fun_sinc(70).wartosci_y))
-    # print("XD2")
+    ##ZADANIE 2
 
-    syg1 = sc.sygnal_sinusoidalny(2, 2, 0, 4).probkowanie(10)
-    syg2 = sc.sygnal_sinusoidalny(2, 2, 0, 4).kwantyzacja(10, 10)
-    print(Sygnal.stosunek_sygnal_szum(syg1, syg2))
+    # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20)
+    # y = syg.wartosci_y
+    # x = syg.wartosci_x
+    #
+    # y2 = sc.sygnal_sinusoidalny(15, 5, 0, 20).kwantyzacja(200, 5).wartosci_y
+    # x2 = sc.sygnal_sinusoidalny(15, 5, 0, 20).kwantyzacja(200, 5).wartosci_x
+    #
+    # plt.plot(x, y, color='red')
+    # plt.plot(x2, y2)
+    # # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
+    # plt.xlabel('t[s]')
+    # plt.ylabel('Amplituda')
+    # plt.show()
+    #
+    # Sygnal.pokaz_wyniki_miar(syg.probkowanie(200),sc.sygnal_sinusoidalny(15, 5, 0, 20).kwantyzacja(200, 5))
+
+    # syg = sc.sygnal_prostokatny(15, 5, 0, 20)
+    # y = syg.wartosci_y
+    # x = syg.wartosci_x
+
+    # y2 = sc.sygnal_prostokatny(15, 5, 0, 20).rekonstrukcja_w_oparciu_o_fun_sinc(200).wartosci_y
+    # x2 = sc.sygnal_prostokatny(15, 5, 0, 20).rekonstrukcja_w_oparciu_o_fun_sinc(200).wartosci_x
+    #
+    # plt.plot(x, y, color='red')
+    # plt.plot(x2, y2)
+    # # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
+    # plt.xlabel('t[s]')
+    # plt.ylabel('Amplituda')
+    # plt.show()
+    print("oryginal")
+    # print(syg.probkowanie(200).wartosci_y)
+    #
+    # print(sc.sygnal_prostokatny(15, 5, 0, 20).kwantyzacja(200, 5).wartosci_y)
+    # Sygnal.pokaz_wyniki_miar(syg.probkowanie(200), sc.sygnal_prostokatny(15, 5, 0, 20).kwantyzacja(200, 5)) #wychodzi 0?
+    #
+    # # syg = sc.sygnal_trojkatny(15, 5, 0, 20)
+    # # y = syg.wartosci_y
+    # # x = syg.wartosci_x
+    # #
+    # syg_prob = sc.sygnal_prostokatny(15, 5, 0, 20).kwantyzacja(200,5)
+    # syg_prob.sygDyskretny = True
+    # y2 = syg_prob.wartosci_y
+    # x2 = syg_prob.wartosci_x
+    # #
+    # # y2 = syg.interpolacja_pierwszego_rzeduNaj(200).wartosci_y
+    # # x2 = syg.interpolacja_pierwszego_rzeduNaj(200).wartosci_x
+    # #
+    # plt.plot(x, y, color='red')
+    # plt.plot(x2, y2)
+    # # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
+    # plt.xlabel('t[s]')
+    # plt.ylabel('Amplituda')
+    # plt.show()
+    #
+    # Sygnal.pokaz_wyniki_miar(syg.probkowanie(200), sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(200, 5))
+    syg2 = sc.sygnal_sinusoidalny(2, 0.01, 0, 1) #100hz
+    syg = sc.sygnal_sinusoidalny(2, 0.01, 0, 1).rekonstrukcja_w_oparciu_o_fun_sinc(101)
+    # syg_kwant = sc.sygnal_sinusoidalny(15, 5, 0, 20).kwantyzacja(400, 8)
+    # Sygnal.pokaz_wyniki_miar(syg_probkowany.probkowanie(100), syg_kwant)  # wychodzi 0?
+
+    y = syg.wartosci_y
+    x = syg.wartosci_x
+    #
+    # y2 = syg_kwant.wartosci_y
+    # x2 = syg_kwant.wartosci_x
+    #
+    y2 = syg2.wartosci_y
+    x2 = syg2.wartosci_x
+    #
+    plt.plot(x, y, color='red')
+    plt.plot(x2, y2)
+    # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
+    plt.xlabel('t[s]')
+    plt.ylabel('Amplituda')
+    plt.show()
+
+    print(y)
+    print(x)
+    print(len(x2))
+    print(len(y2))

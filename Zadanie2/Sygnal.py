@@ -1,6 +1,6 @@
 import math
 import numpy as np
-import SortedSet
+from sortedcontainers import SortedSet
 import matplotlib.pyplot as plt
 import cmath
 
@@ -152,65 +152,32 @@ class Sygnal:
     # COS JEST NIE TAK!
     def kwantyzacja(self, czestotliwosc, poziom_kwantyzacji):
 
-        # syg_probkowany = self.probkowanie(czestotliwosc)
-        # result_y = []
-        #
-        # for i in range(len(syg_probkowany.wartosci_x)):
-        #     for j in range(int(len(self.wartosci_x) / len(syg_probkowany.wartosci_x))):
-        #         result_y.append(syg_probkowany.wartosci_y)
-
         syg_probkowany = self.probkowanie(czestotliwosc)
-        # syg_probkowany.sygDyskretny = False
-        # syg_probkowany.sygDyskretny = False
+
+        syg_probkowany.sygDyskretny = False
+        syg_probkowany.sygDyskretny = False
         minn = syg_probkowany.wartosci_y[0]
-        max = syg_probkowany.wartosci_y[0]
+        maxx = syg_probkowany.wartosci_y[0]
         maxx = syg_probkowany.wartosci_y[0]
         for i in range(len(syg_probkowany.wartosci_y)):
             if minn > syg_probkowany.wartosci_y[i]:
                 minn = syg_probkowany.wartosci_y[i]
-            if max < syg_probkowany.wartosci_y[i]:
-                max = syg_probkowany.wartosci_y[i]
             if maxx < syg_probkowany.wartosci_y[i]:
                 maxx = syg_probkowany.wartosci_y[i]
 
         roznica = maxx - minn
         lista = []
-        ###
-        nowe_x = []
-        nowe_y = []
 
-        ###
-        for i in range(poziom_kwantyzacji):
+        for i in range(poziom_kwantyzacji + 1):
             lista.append(minn + ((roznica / poziom_kwantyzacji) * i))
 
         lista.sort()
-        # print("LISTA:")
-        # print(lista)
-        # print(syg_probkowany.wartosci_y)
-        for i in range(len(syg_probkowany.wartosci_x)):
-            temp_y = self.znajdz_max_z_przedzialu(lista, -100, syg_probkowany.wartosci_y[i])
-            nowe_x.append(syg_probkowany.wartosci_x[i])
-            nowe_y.append(temp_y)
+
+        nowe_y = [min(lista, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
 
         syg_probkowany.wartosci_y = nowe_y
-        syg_probkowany.wartosci_x = nowe_x
 
         return syg_probkowany
-
-        # KON SIE SAM WALI WTF?!
-        # y = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in syg_probkowany.wartosci_y]
-
-        # for i in range(len(syg_probkowany.wartosci_x) - 1):
-        #     nowe_x.append(syg_probkowany.wartosci_x[i])
-        #     nowe_y.append(y[i])
-
-        # nowe_x.append(syg_probkowany.wartosci_x[i + 1])
-        # nowe_y.append(y[i])
-
-        # syg_kwantowany = Sygnal(nowe_x, nowe_y)
-
-        # syg_kwantowany = Sygnal(syg_probkowany.wartosci_x, y)
-        # return syg_kwantowany
 
     def rect(self, t):
         if np.math.fabs(t) > 0.5:
@@ -326,6 +293,7 @@ class Sygnal:
         suma = 0
         for i in range(ilosc_pktow):
             suma += (syg_kwantowany.wartosci_y[i] - syg_oryginalny.wartosci_y[i]) ** 2
+            print(suma)
 
         return suma / ilosc_pktow
 
@@ -341,10 +309,17 @@ class Sygnal:
         wynik = 10 * cmath.log(licznik / mianownik, 10)
 
         return wynik
+
     @staticmethod
     def maksymalna_roznica(syg_oryginalny, syg_kwantowany):
         max = math.fabs(syg_oryginalny.wartosci_y[0] - syg_kwantowany.wartosci_y[0])
-        for i in range(1,len(syg_oryginalny.wartosci_y)):
+        for i in range(1, len(syg_oryginalny.wartosci_y)):
             if max < math.fabs(syg_oryginalny.wartosci_y[i] - syg_kwantowany.wartosci_y[i]):
                 max = math.fabs(syg_oryginalny.wartosci_y[i] - syg_kwantowany.wartosci_y[i])
         return max
+
+    @staticmethod
+    def pokaz_wyniki_miar(syg_oryginalny, syg_kwantowany):
+        print("blad_sredniokwadratowy: ", Sygnal.blad_sredniokwadratowy(syg_oryginalny, syg_kwantowany))
+        print("stosunek_sygnal_szum: ", Sygnal.stosunek_sygnal_szum(syg_oryginalny, syg_kwantowany))
+        print("maksymalna_roznica: ", Sygnal.maksymalna_roznica(syg_oryginalny, syg_kwantowany))
