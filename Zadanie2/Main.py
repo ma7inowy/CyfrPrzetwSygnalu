@@ -261,28 +261,32 @@ if __name__ == '__main__':
     # plt.show()
     #
     # Sygnal.pokaz_wyniki_miar(syg.probkowanie(200), sc.sygnal_trojkatny(15, 5, 0, 20).kwantyzacja(200, 5))
-    syg2 = sc.sygnal_sinusoidalny(2, 0.01, 0, 1) #100hz
-    syg = sc.sygnal_sinusoidalny(2, 0.01, 0, 1).rekonstrukcja_w_oparciu_o_fun_sinc(101)
-    # syg_kwant = sc.sygnal_sinusoidalny(15, 5, 0, 20).kwantyzacja(400, 8)
-    # Sygnal.pokaz_wyniki_miar(syg_probkowany.probkowanie(100), syg_kwant)  # wychodzi 0?
-
-    y = syg.wartosci_y
-    x = syg.wartosci_x
+    # syg2 = sc.sygnal_sinusoidalny(2, 0.01, 0, 1) #100hz
+    # syg = sc.sygnal_sinusoidalny(2, 0.01, 0, 1).rekonstrukcja_w_oparciu_o_fun_sinc(101)
+    # # syg_kwant = sc.sygnal_sinusoidalny(15, 5, 0, 20).kwantyzacja(400, 8)
+    # # Sygnal.pokaz_wyniki_miar(syg_probkowany.probkowanie(100), syg_kwant)  # wychodzi 0?
     #
-    # y2 = syg_kwant.wartosci_y
-    # x2 = syg_kwant.wartosci_x
+    # y = syg.wartosci_y
+    # x = syg.wartosci_x
+    # #
+    # # y2 = syg_kwant.wartosci_y
+    # # x2 = syg_kwant.wartosci_x
+    # #
+    # y2 = syg2.wartosci_y
+    # x2 = syg2.wartosci_x
+    # #
+    # plt.plot(x, y, color='red')
+    # plt.plot(x2, y2)
+    # # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
+    # plt.xlabel('t[s]')
+    # plt.ylabel('Amplituda')
+    # plt.show()
     #
-    y2 = syg2.wartosci_y
-    x2 = syg2.wartosci_x
-    #
-    plt.plot(x, y, color='red')
-    plt.plot(x2, y2)
-    # plt.xlim(self.wartosci_x[0], self.wartosci_x[len(self.wartosci_x) - 1])  # od do X
-    plt.xlabel('t[s]')
-    plt.ylabel('Amplituda')
-    plt.show()
-
-    print(y)
-    print(x)
-    print(len(x2))
-    print(len(y2))
+    # print(y)
+    # print(x)
+    # print(len(x2))
+    # print(len(y2))
+    syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).mnozenie(sc.sygnal_prostokatny(15, 5, 0, 20))
+    syg.rysuj_sygnal()
+    # syg.rysuj_histogram(15)
+    syg.pokazWynikiParametrow()

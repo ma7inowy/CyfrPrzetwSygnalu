@@ -23,6 +23,10 @@ wynik2sygnalow = 0
 wsp_wyp1 = 0
 prawdopo1 = 0
 ilosc_przedzialow1 = 0
+konwersja = ""
+
+# sygnal po konwersji
+syg_konwersja = 0
 
 
 def podaj_parametry():
@@ -145,6 +149,9 @@ def rysowanie_wykresu():
     if sygnal2 != "WYBIERZ2":
         global wynik2sygnalow
         wynik2sygnalow.rysuj_sygnal()
+    elif konwersja != "KONWERSJA":
+        global syg_konwersja
+        syg_konwersja.rysuj_sygnal()
     else:
         getSygnal1().rysuj_sygnal()
 
@@ -188,11 +195,13 @@ def wykonaj_akcje2():
 def dodawanie():
     global wynik2sygnalow
     wynik2sygnalow = getSygnal1().dodawanie(getSygnal2())
+    print("+")
 
 
 def odejmowanie():
     global wynik2sygnalow
     wynik2sygnalow = getSygnal1().odejmowanie(getSygnal2())
+    print("-")
 
 
 def mnozenie():
@@ -208,12 +217,32 @@ def dzielenie():
 def wyswietl_otrzymane_parametry():
     if sygnal2 != "WYBIERZ2":
         messagebox.showinfo("Otrzymane parametry:", wynik2sygnalow.pokazWynikiParametrow())
+    elif konwersja != "KONWERSJA":
+        global syg_konwersja
+        messagebox.showinfo("Otrzymane miary: ",
+                            syg_konwersja.pokaz_wyniki_miar(getSygnal1().probkowanie(200), getSygnal1().kwantyzacja(200, 8)))
     else:
         messagebox.showinfo("Otrzymane parametry:", getSygnal1().pokazWynikiParametrow())
 
 
-# bo ten sygnal tez printuje
+def wykonaj_konwersje():
+    global konwersja
+    global sygnal1
+    global syg_konwersja
+    konwersja = chosen_action_zad2.get()
+    if konwersja == "PROBKOWANIE":
+        syg_konwersja = getSygnal1().probkowanie(200)
+    elif konwersja == "KWANTYZACJA":
+        syg_konwersja = getSygnal1().kwantyzacja(200, 8)
+    elif konwersja == "EKSTR. 0 RZEDU":
+        syg_konwersja = getSygnal1().ekstrapolacja_zerowego_rzeduNaj(300)
+    elif konwersja == "INTERP. 1 RZEDU":
+        syg_konwersja = getSygnal1().interpolacja_pierwszego_rzeduNaj(300)
+    elif konwersja == "REKONSTR. SINC":
+        syg_konwersja = getSygnal1().rekonstrukcja_w_oparciu_o_fun_sinc(300)
 
+
+# TU SIE DZIEJE WSZYSTKO PO KOLEI PO KLIKNIECIU PRZYCISKU URUCHOMO
 def zatwierdz_all():
     print("amplituda", amp1)
     print("czas pocz", czas_pocz1)
@@ -239,13 +268,15 @@ def zatwierdz_all():
     elif akcja1 == "DZIELENIE":
         dzielenie()
 
+    wykonaj_konwersje()  # sprawdza czy moze wykonac, jesli tak to wykonuje
     wyswietl_otrzymane_parametry()
     wykonaj_akcje2()
 
 
 root = Tk()
+var_zad2 = IntVar()
 root.config(background="grey")
-root.geometry('303x310')
+root.geometry('530x310')
 root.title("Gen. sygnału i szumu")
 root.resizable(width=True, height=True)
 
@@ -271,6 +302,23 @@ chosen_signal2.current(0)
 
 signal_label2 = Label(root, text="WYBIERZ SYGNAŁ2: ")
 signal_label2.grid(row=1, column=0, padx=1, pady=1)
+
+# checkbox do zad2 ZE JESLI ZAZNACZONE TO MA ENABLE TE KONWERSJE A JAK ODZNACZONE TO DISABLE TE KONWERSJEE
+
+
+check_zad2 = Checkbutton(root, text="Konwersja", variable=var_zad2)
+check_zad2.grid(row=2, column=0)
+
+# wybrana akcja do zadania2
+chosen_action_zad2 = Combobox(root, width=25, state="readonly")
+chosen_action_zad2['values'] = ("KONWERSJA", "PROBKOWANIE",
+                                "KWANTYZACJA", "EKSTR. 0 RZEDU", "INTERP. 1 RZEDU", "REKONSTR. SINC")
+chosen_action_zad2.grid(row=2, column=3, padx=5, pady=10)
+chosen_action_zad2.current(0)
+
+# do zadania 2
+action_label = Label(root, text="ZAD2: ")
+action_label.grid(row=2, column=2, padx=1, pady=1)
 
 # przycisk do ustalania parametrow
 parametry_button = Button(root, text=" Parametry ", command=podaj_parametry)
@@ -309,7 +357,7 @@ ilosc_przedz_label = Label(root, text="ILOŚĆ PRZEDZ.: ")
 ilosc_przedz_label.grid(row=5, column=0, padx=1, pady=1)
 
 
-def if_signal2_chosen():
+def running_in_background():
     if chosen_signal2.get() == "WYBIERZ2":
         chosen_action.set("AKCJA1")
         chosen_action.configure(state="disabled")
@@ -321,9 +369,14 @@ def if_signal2_chosen():
         hist_box.set("0")
     else:
         hist_box.configure(state="normal")
+    if var_zad2.get() == 0:
+        chosen_action_zad2.set("KONWERSJA")
+        chosen_action_zad2.configure(state="disabled")
+    else:
+        chosen_action_zad2.configure(state="enable")
 
-    root.after(500, if_signal2_chosen)
+    root.after(500, running_in_background)
 
 
-root.after(500, if_signal2_chosen)
+root.after(500, running_in_background)
 root.mainloop()

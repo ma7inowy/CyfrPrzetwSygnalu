@@ -320,6 +320,10 @@ class Sygnal:
 
     @staticmethod
     def pokaz_wyniki_miar(syg_oryginalny, syg_kwantowany):
-        print("blad_sredniokwadratowy: ", Sygnal.blad_sredniokwadratowy(syg_oryginalny, syg_kwantowany))
-        print("stosunek_sygnal_szum: ", Sygnal.stosunek_sygnal_szum(syg_oryginalny, syg_kwantowany))
-        print("maksymalna_roznica: ", Sygnal.maksymalna_roznica(syg_oryginalny, syg_kwantowany))
+        str1 = "blad_sredniokwadratowy: " + str(Sygnal.blad_sredniokwadratowy(syg_oryginalny, syg_kwantowany))
+        str2 = "\nstosunek_sygnal_szum: " + str(Sygnal.stosunek_sygnal_szum(syg_oryginalny, syg_kwantowany))
+        str3 = "\nmaksymalna_roznica: " + str(Sygnal.maksymalna_roznica(syg_oryginalny, syg_kwantowany))
+        return str1 + str2 + str3
+
+
+

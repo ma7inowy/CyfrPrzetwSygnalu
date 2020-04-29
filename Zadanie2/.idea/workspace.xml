@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica">
+    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
     </list>
@@ -26,7 +27,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../SztucznaInteligencja/Zadanie1_git/SztucznaInteligencjaLab/Zadanie2" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -284,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587148693386</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added method pokaz_wyniki_miar in class Sygnal">
+      <created>1588007859353</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1588007859353</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -318,6 +326,7 @@
     <MESSAGE value="In class Sygnal, fixed kwantyzacja() (znajdz_max_z_przedzialu) and added blad_sredniokwadratowy" />
     <MESSAGE value="In class SygnalCiagly, fixed sygnal_trojkatny() method ! ! !" />
     <MESSAGE value="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica" />
-    <option name="LAST_COMMIT_MESSAGE" value="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica" />
+    <MESSAGE value="added method pokaz_wyniki_miar in class Sygnal" />
+    <option name="LAST_COMMIT_MESSAGE" value="added method pokaz_wyniki_miar in class Sygnal" />
   </component>
 </project>
