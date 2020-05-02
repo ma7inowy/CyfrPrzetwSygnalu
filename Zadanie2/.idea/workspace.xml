@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
+    <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="In script GUI:&#10;1. in method rysowanie_wykresu() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;2. in method wyswietl_otrzymane_parametry() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;3  added method wykonaj_konwersje()&#10;4. added Checkbutton check_zad2&#10;5. added Combobox chosen_action_zad2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -292,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588007859353</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="In script GUI:&#10;1. in method rysowanie_wykresu() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;2. in method wyswietl_otrzymane_parametry() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;3  added method wykonaj_konwersje()&#10;4. added Checkbutton check_zad2&#10;5. added Combobox chosen_action_zad2">
+      <created>1588186063324</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1588186063324</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -327,6 +333,7 @@
     <MESSAGE value="In class SygnalCiagly, fixed sygnal_trojkatny() method ! ! !" />
     <MESSAGE value="In class SygnalCiagly implemented methods: stosunek_sygnal_szum, maksymalna_roznica" />
     <MESSAGE value="added method pokaz_wyniki_miar in class Sygnal" />
-    <option name="LAST_COMMIT_MESSAGE" value="added method pokaz_wyniki_miar in class Sygnal" />
+    <MESSAGE value="In script GUI:&#10;1. in method rysowanie_wykresu() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;2. in method wyswietl_otrzymane_parametry() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;3  added method wykonaj_konwersje()&#10;4. added Checkbutton check_zad2&#10;5. added Combobox chosen_action_zad2" />
+    <option name="LAST_COMMIT_MESSAGE" value="In script GUI:&#10;1. in method rysowanie_wykresu() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;2. in method wyswietl_otrzymane_parametry() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;3  added method wykonaj_konwersje()&#10;4. added Checkbutton check_zad2&#10;5. added Combobox chosen_action_zad2" />
   </component>
 </project>

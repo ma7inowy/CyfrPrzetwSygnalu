@@ -1,10 +1,8 @@
-import time
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import Combobox
 
 from Main import Main
-from Sygnal import Sygnal
 from SygnalCiagly import SygnalCiagly
 from SygnalDyskretny import SygnalDyskretny
 
@@ -23,10 +21,12 @@ wynik2sygnalow = 0
 wsp_wyp1 = 0
 prawdopo1 = 0
 ilosc_przedzialow1 = 0
-konwersja = ""
 
 # sygnal po konwersji
+konwersja_checkbox = ""
+czestotliwosc1 = 0
 syg_konwersja = 0
+stopien_kwant1 = 0
 
 
 def podaj_parametry():
@@ -149,7 +149,7 @@ def rysowanie_wykresu():
     if sygnal2 != "WYBIERZ2":
         global wynik2sygnalow
         wynik2sygnalow.rysuj_sygnal()
-    elif konwersja != "KONWERSJA":
+    elif konwersja_checkbox != "KONWERSJA":
         global syg_konwersja
         syg_konwersja.rysuj_sygnal()
     else:
@@ -217,32 +217,49 @@ def dzielenie():
 def wyswietl_otrzymane_parametry():
     if sygnal2 != "WYBIERZ2":
         messagebox.showinfo("Otrzymane parametry:", wynik2sygnalow.pokazWynikiParametrow())
-    elif konwersja != "KONWERSJA":
+    elif konwersja_checkbox != "KONWERSJA":
         global syg_konwersja
         messagebox.showinfo("Otrzymane miary: ",
-                            syg_konwersja.pokaz_wyniki_miar(getSygnal1().probkowanie(200), getSygnal1().kwantyzacja(200, 8)))
+                            syg_konwersja.pokaz_wyniki_miar(getSygnal1().probkowanie(czestotliwosc1),
+                                                            getSygnal1().kwantyzacja(czestotliwosc1, stopien_kwant1)))
+        messagebox.showinfo("Otrzymane parametry:", getSygnal1().pokazWynikiParametrow())
     else:
         messagebox.showinfo("Otrzymane parametry:", getSygnal1().pokazWynikiParametrow())
 
 
 def wykonaj_konwersje():
-    global konwersja
+    global konwersja_checkbox
     global sygnal1
     global syg_konwersja
-    konwersja = chosen_action_zad2.get()
-    if konwersja == "PROBKOWANIE":
-        syg_konwersja = getSygnal1().probkowanie(200)
-    elif konwersja == "KWANTYZACJA":
-        syg_konwersja = getSygnal1().kwantyzacja(200, 8)
-    elif konwersja == "EKSTR. 0 RZEDU":
-        syg_konwersja = getSygnal1().ekstrapolacja_zerowego_rzeduNaj(300)
-    elif konwersja == "INTERP. 1 RZEDU":
-        syg_konwersja = getSygnal1().interpolacja_pierwszego_rzeduNaj(300)
-    elif konwersja == "REKONSTR. SINC":
-        syg_konwersja = getSygnal1().rekonstrukcja_w_oparciu_o_fun_sinc(300)
+    global czestotliwosc1
+    global stopien_kwant1
+    czestotliwosc1 = int(czestotliwosc.get())
+    konwersja_checkbox = chosen_action_zad2.get()
+    stopien_kwant1 = int(stopien_kwant.get())
+    if konwersja_checkbox == "PROBKOWANIE":
+        syg_konwersja = getSygnal1().probkowanie(czestotliwosc1)
+    elif konwersja_checkbox == "KWANTYZACJA":
+        syg_konwersja = getSygnal1().kwantyzacja(czestotliwosc1, stopien_kwant1)
+    elif konwersja_checkbox == "EKSTR. 0 RZEDU":
+        syg_konwersja = getSygnal1().ekstrapolacja_zerowego_rzeduNaj(czestotliwosc1)
+    elif konwersja_checkbox == "INTERP. 1 RZEDU":
+        syg_konwersja = getSygnal1().interpolacja_pierwszego_rzeduNaj(czestotliwosc1)
+    elif konwersja_checkbox == "REKONSTR. SINC":
+        syg_konwersja = getSygnal1().rekonstrukcja_w_oparciu_o_fun_sinc(czestotliwosc1)
 
 
-# TU SIE DZIEJE WSZYSTKO PO KOLEI PO KLIKNIECIU PRZYCISKU URUCHOMO
+# TU SIE DZIEJE WSZYSTKO PO KOLEI PO KLIKNIECIU PRZYCISKU URUCHOM
+def wykonaj_akcje1():
+    if akcja1 == "DODAWANIE":
+        dodawanie()
+    elif akcja1 == "ODEJMOWANIE":
+        odejmowanie()
+    elif akcja1 == "MNOZENIE":
+        mnozenie()
+    elif akcja1 == "DZIELENIE":
+        dzielenie()
+
+
 def zatwierdz_all():
     print("amplituda", amp1)
     print("czas pocz", czas_pocz1)
@@ -259,20 +276,14 @@ def zatwierdz_all():
     global ilosc_przedzialow1
     ilosc_przedzialow1 = int(hist_box.get())
 
-    if akcja1 == "DODAWANIE":
-        dodawanie()
-    elif akcja1 == "ODEJMOWANIE":
-        odejmowanie()
-    elif akcja1 == "MNOZENIE":
-        mnozenie()
-    elif akcja1 == "DZIELENIE":
-        dzielenie()
-
+    # krok po kroku dzialania po zatwierdzeniu
+    wykonaj_akcje1()
     wykonaj_konwersje()  # sprawdza czy moze wykonac, jesli tak to wykonuje
     wyswietl_otrzymane_parametry()
     wykonaj_akcje2()
 
 
+# VIEW
 root = Tk()
 var_zad2 = IntVar()
 root.config(background="grey")
@@ -303,22 +314,38 @@ chosen_signal2.current(0)
 signal_label2 = Label(root, text="WYBIERZ SYGNAŁ2: ")
 signal_label2.grid(row=1, column=0, padx=1, pady=1)
 
-# checkbox do zad2 ZE JESLI ZAZNACZONE TO MA ENABLE TE KONWERSJE A JAK ODZNACZONE TO DISABLE TE KONWERSJEE
-
-
+# checkbox do zad2
 check_zad2 = Checkbutton(root, text="Konwersja", variable=var_zad2)
-check_zad2.grid(row=2, column=0)
+check_zad2.grid(row=1, column=3)
 
 # wybrana akcja do zadania2
+action_label = Label(root, text="PRÓBKOW. I KWANT: ")
+action_label.grid(row=0, column=3, padx=1, pady=1)
+
 chosen_action_zad2 = Combobox(root, width=25, state="readonly")
 chosen_action_zad2['values'] = ("KONWERSJA", "PROBKOWANIE",
                                 "KWANTYZACJA", "EKSTR. 0 RZEDU", "INTERP. 1 RZEDU", "REKONSTR. SINC")
 chosen_action_zad2.grid(row=2, column=3, padx=5, pady=10)
 chosen_action_zad2.current(0)
 
-# do zadania 2
-action_label = Label(root, text="ZAD2: ")
-action_label.grid(row=2, column=2, padx=1, pady=1)
+# czestotliwosc i stopien kwantyzacji
+action_label = Label(root, text="CZĘST: ")
+action_label.grid(row=3, column=2, padx=1, pady=1)
+
+czestotliwosc = Combobox(root, width=25, state="readonly")
+czestotliwosc['values'] = (
+    "30", "50", "100", "200", "300", "500", "700")
+czestotliwosc.grid(row=3, column=3, padx=5, pady=10)
+czestotliwosc.current(0)
+
+action_label = Label(root, text="ST.KW:")
+action_label.grid(row=4, column=2, padx=1, pady=1)
+
+stopien_kwant = Combobox(root, width=25, state="readonly")
+stopien_kwant['values'] = (
+    "1", "3", "5", "7", "9", "11")
+stopien_kwant.grid(row=4, column=3, padx=5, pady=10)
+stopien_kwant.current(2)
 
 # przycisk do ustalania parametrow
 parametry_button = Button(root, text=" Parametry ", command=podaj_parametry)
@@ -343,7 +370,6 @@ chosen_action2.current(0)
 action_label = Label(root, text="OPERACJA: ")
 action_label.grid(row=4, column=0, padx=1, pady=1)
 
-# zatwierdz
 uruchom_button = Button(root, text=" URUCHOM ", command=zatwierdz_all)
 uruchom_button.grid(row=6, column=1, padx=5, pady=10)
 
@@ -372,8 +398,20 @@ def running_in_background():
     if var_zad2.get() == 0:
         chosen_action_zad2.set("KONWERSJA")
         chosen_action_zad2.configure(state="disabled")
+        czestotliwosc.set(30)
+        czestotliwosc.configure(state="disabled")
+        stopien_kwant.configure(state="disabled")
+
+        # zeby byl tylko 1 sygnal brany
+        chosen_signal2.configure(state="enable")
     else:
         chosen_action_zad2.configure(state="enable")
+        czestotliwosc.configure(state="enable")
+        stopien_kwant.configure(state="enable")
+
+        # zeby byl tylko 1 sygnal brany
+        chosen_signal2.configure(state="disabled")
+        chosen_signal2.set("WYBIERZ2")
 
     root.after(500, running_in_background)
 
