@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Filtracja.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +42,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.GUI">
+  <component name="RunManager" selected="Python.Main">
     <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Zadanie1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -147,8 +150,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.GUI" />
         <item itemvalue="Python.Main" />
+        <item itemvalue="Python.GUI" />
       </list>
     </recent_temporary>
   </component>
