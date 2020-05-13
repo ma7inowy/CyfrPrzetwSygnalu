@@ -325,5 +325,64 @@ class Sygnal:
         str3 = "\nmaksymalna_roznica: " + str(Sygnal.maksymalna_roznica(syg_oryginalny, syg_kwantowany))
         return str1 + str2 + str3
 
+    @staticmethod
+    def operacja_splotu(syg_pierwszy, syg_drugi):
+        lista_y = []
+        lista_x = []
+        for i in range(len(syg_pierwszy.wartosci_y) + len(syg_drugi.wartosci_y)):
+            kmin = 0
+            kmax = 0
+            sum = 0
+            if i >= (len(syg_pierwszy.wartosci_y) - 1):
+                kmin = i - (len(syg_pierwszy.wartosci_y) - 1)
+            else:
+                kmin = 0
 
+            if i < (len(syg_drugi.wartosci_y) - 1):
+                kmax = i
+            else:
+                kmax = (len(syg_drugi.wartosci_y) - 1)
+            for j in range(kmin, kmax, 1):
+                sum += syg_drugi.wartosci_y[j] * syg_pierwszy.wartosci_y[i - j]
+            lista_y.append(sum)
 
+        for k in range(len(lista_y)):
+            lista_x.append(k)
+        # czy robic to z czestotliwosica?
+
+        return Sygnal(lista_x, lista_y)
+
+    @staticmethod
+    def korelacja_sygnalow(syg_pierwszy, syg_drugi):
+        lista_x = []
+        lista_y = []
+
+        for i in range(len(syg_pierwszy.wartosci_y) + len(syg_drugi.wartosci_y)):
+            sum = 0
+            if i >= (len(syg_drugi.wartosci_y) - 1):
+                k1min = i - (len(syg_drugi.wartosci_y) - 1)
+            else:
+                k1min = 0
+
+            if i < (len(syg_pierwszy.wartosci_y) - 1):
+                k1max = i
+            else:
+                k1max = (len(syg_pierwszy.wartosci_y) - 1)
+
+            if i <= (len(syg_drugi.wartosci_y) - 1):
+                k2min = (len(syg_drugi.wartosci_y) - 1 - i)
+            else:
+                k2min = 0
+
+            k1 = k1min
+            k2 = k2min
+            while k1 <= k1max:
+                sum += syg_pierwszy.wartosci_y[k1] * syg_drugi.wartosci_y[k2]
+                k1 += 1
+                k2 += 1
+            lista_y.append(sum)
+
+        for k in range(len(lista_y)):
+            lista_x.append(k)
+        # czy robic to z czestotliwosica?
+        return Sygnal(lista_x, lista_y)
