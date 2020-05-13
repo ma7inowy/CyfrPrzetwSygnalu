@@ -131,9 +131,10 @@ class Sygnal:
         skok_probkowania = wartosc
         # print("WARTOSC" + str(wartosc))
         for i in range(0, 1000, wartosc):
-            # print(i)
-            x.append(self.wartosci_x[i])
-            y.append(self.wartosci_y[i])
+            if i < len(self.wartosci_y):  # ten if dolozony
+                x.append(self.wartosci_x[i])
+                y.append(self.wartosci_y[i])
+
         sygnal = Sygnal(x, y)
         sygnal.sygDyskretny = True
         # print(sygnal.wartosci_x)
@@ -324,6 +325,27 @@ class Sygnal:
         str2 = "\nstosunek_sygnal_szum: " + str(Sygnal.stosunek_sygnal_szum(syg_oryginalny, syg_kwantowany))
         str3 = "\nmaksymalna_roznica: " + str(Sygnal.maksymalna_roznica(syg_oryginalny, syg_kwantowany))
         return str1 + str2 + str3
+
+    # do weryfikacji i poprawy
+    @staticmethod
+    def operacja_splotu2(syg_pierwszy, filtrowane_wartosci, czestotliwosc):
+        lista_x_koncowa = []
+        wartosci_splotu = []
+        for i in range(len(syg_pierwszy.wartosci_y) + len(filtrowane_wartosci) - 1):
+            sum = 0
+            for j in range(len(syg_pierwszy.wartosci_y)):
+                if i - j >= 0 and i - j < len(filtrowane_wartosci):
+                    sum += syg_pierwszy.wartosci_y[j] * filtrowane_wartosci[len(filtrowane_wartosci) - (i - j) - 1]
+            wartosci_splotu.append(sum)
+
+        for i in range(len(wartosci_splotu)):
+            lista_x_koncowa.append(i)
+
+        syg = Sygnal(lista_x_koncowa, wartosci_splotu)
+        print("operacja_splotu2")
+        print(len(lista_x_koncowa))
+        print(len(wartosci_splotu))
+        return syg.probkowanie(czestotliwosc)
 
     @staticmethod
     def operacja_splotu(syg_pierwszy, syg_drugi):

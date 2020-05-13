@@ -3,6 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
+from Filtracja import Filtracja
 from Sygnal import Sygnal
 from SygnalCiagly import SygnalCiagly
 from SygnalDyskretny import SygnalDyskretny
@@ -286,8 +287,15 @@ if __name__ == '__main__':
     # print(x)
     # print(len(x2))
     # print(len(y2))
-    syg = sc.sygnal_sinusoidalny(15, 5, 0, 20)
-    syg2 = sc.sygnal_prostokatny(15, 5, 0, 20)
-    syg3 = Sygnal.operacja_splotu(syg, syg2)
-    syg3.rysuj_sygnal()
+    # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20)
+    # syg2 = sc.sygnal_prostokatny(15, 5, 0, 20)
+    # syg3 = Sygnal.operacja_splotu(syg, syg2)
+    # syg3.rysuj_sygnal()
     # syg.pokazWynikiParametrow()
+
+    filtr = Filtracja.filtr_dolnoprzepustowy(67, 250, 400)
+    syg = sc.sygnal_sinusoidalny(15, 5, 0, 20).probkowanie(400)  # ? ?
+    filtr2 = Filtracja.okno_hanninga(filtr)
+    print(len(filtr2))
+    syg2 = Sygnal.operacja_splotu2(syg, filtr2, 400)
+    syg2.rysuj_sygnal()
