@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[polish]{babel}
+\usepackage{amsmath}
+
+\setlength{\textheight}{21cm}
+
+\title{{\bf Zadanie nr 3 - Splot, filtracja i korelacja sygnałów}\linebreak
+Cyfrowe Przetwarzanie Sygnałów}
+\author{Jakub Wąchała, 216914 \and Radosław Grela, 216769}
+\date{17.05.2020}
+
+\begin{document}
+\clearpage\maketitle
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+\section{Cel zadania}
+\label{cel}
+Celem zadania jest oswojenie się z zagadnieniami dotyczącymi splotu, filtracji i korelacji sygnałów. Zadanie polega na implementacji wybranych wariantów filtracji, funkcji okien, które są często wykorzystywane w praktyce cyfrowej filtracji sygnałów. 
+
+\section{Wstep teoretyczny}
+Program ten jest wzbogaconą o powyższe funkcjonalności wersją programu z zadania 1. i 2. Umożliwia wykonanie operacji splotu, korelację sygnałów dyskretnych, tworzenie filtrów o ustalonej wartości (M - rząd filtru, f0 - odcięcia filtru, fd - częstotliwość próbkowania sygnału) z wykorzystaniem okien. 
+\begin{itemize}
+\item Splot - jedna z najważniejszych operacji, która wykorzystywana jest podczas filtracji sygnałów dyskretnych. Polega na przetwarzaniu dwóch sygnałów dyskretnych co w konsekwencji daje nam jeden sygnał dyskretny.
+\item Korelacja sygnałów - bardzo ważna rzecz w przetwarzaniu sygnałów. Używana gdy porównujemy ze sobą dwa sygnały np. sygnał oryginalny z sygnałem oryginalnym, ale przesuniętym na osi. Tak samo jak operacja splotu - podając dwa sygnały otrzymujemy jeden.
+\item Filtracja - jedna z podstawowych operacji w cyfrowym przetwarzaniu sygnałów. W jej procesie widmo sygnału podlega modyfikacji tj. odfiltrowanie składowych sygnału, których częstotliwości znajdują się w paśmie zaporowym, natomiast te, które znajdują się w paśmie przepustowym(pozostała część) nie są zmieniane lub ulegają małemu tłumieniu.
+\item Okno - postać odpowiedzi impulsowej filtru SOI??????????????
+\end{itemize}
+\subsection {Dodatkowo zaimplementowane warianty:}
+\begin {enumerate}
+\item Wykorzystane okna
+\begin {itemize}
+ \item okno prostokątne
+\item (O2) okno Hanninga
+\end {itemize}
+\item Wykorzystane filtry
+\begin {itemize}
+\item filtr dolnoprzepustowy
+\item (F1) filtr środkowoprzepsutowy
+zaimplementowac operacje filtracji podstawiajac odpowiedz impulsowa filtru do wzoru na 
+splot ????
+\end {itemize}
+\item  Operacja splotu splotu 
+\item Korelacja sygnałów dyskretnych 
+\end{enumerate}
+
+\section{Eksperymenty i wyniki}
+Eksperymenty zostały przez nas podzielone na: operacje splotu, operacje korelacji, operacje filtracji z wykorzystaniem okna. Skorzystamy z funkcji trójkątnej i sinusoidalnej z parametrami:
+\begin{itemize}
+\item amplituda: 15
+\item okres: 5
+\item czas początkowy: 0
+\item czas trwania: 20
+\end{itemize}
+\subsection{Operacje splotu}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{1sinusKwantStopien5.png}
+\caption{Operacja splotu funkcji sinusoidalnej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{1sinusKwantStopien5.png}
+\caption{Operacja splotu funkcji trójkątnej}
+\end{figure}
+
+\subsection{Operacje korelacji}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{1sinusKwantStopien5.png}
+\caption{Operacja korelacji bezpośredniej dla funkcji sinusoidalnej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{1sinusKwantStopien5.png}
+\caption{Operacja korelacji przez splot fun sinus???}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{1sinusKwantStopien5.png}
+\caption{Operacja korelacji przez splot fun trójkątn???}
+\end{figure}
+
+\subsection{Operacje filtracji z wykorzystaniem okna}
+Celem eksperymentu jest przedstawienie wyników procesu filtracji z wykorzystaniem okna. O parametrach:
+\begin{itemize}
+\item Rząd filtru (M): 51
+\item Częstotliwość odcięcia filtru (f0): 15
+\item Częstotliwość próbkowania sygnału(fd): 200
+\end{itemize}
+
+\subsubsection{Rezultat}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
+\caption{Filtr dolnoprzepustowy z oknem Hanninga}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
+\caption{Filtr dolnoprzepustowy z oknem Hanninga dla funkcji sinusoidalnej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
+\caption{Filtr dolnoprzepustowy z oknem Hanninga dla funkcji trójkątnej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
+\caption{Filtr średnioprzepustowy z oknem Hanninga dla funkcji trójkątnej}
+\end{figure}
+
+\section{Wnioski}
+\begin {itemize}
+\item Prezentowane wyniki są dowodem na poprawne wykonanie zadania tj. poprawność konwersji A/C (kwantyzacji równomiernej z zaokrągleniem oraz próbkowania), C/A (interpolacji pierwszego rzędu, ekstrapolacji zerowego rzędu, rekonstrukcji w oparciu o funkcję sinus) wraz z ich miarami. Widzimy, że im większa częstotliwość (większa ilość próbek na sekundę) tym wykres zostaje zrekonstruowany w sposób bardziej dokładny.
+\item W przypadku ekstrapolacji widać widoczne zniekształcenie w stosunku do sygnału oryginalnego ponieważ powstaje ona przy użyciu funkcji rect (prostokąt), przez co przybiera ona postać schodkową. Lepiej wygląda to w wypadku interpolacji.
+\item Rekonstrukcja w opraciu o funkcję sinus jest dokładniejsza od ekstrapolacji zerowego rzędu (przyjmując, że porównujemy te same częstotliwości)
+\item Im większy stopień kwantyzacji tym błąd oraz maksymalna różnica jest mniejsza
+\end {itemize}
+
+
+\begin{thebibliography}{0}
+\bibitem{bib1}
+\label{zad1}
+\textit{Zadanie 2 - Próbkowanie i kwantyzacja} Cyfrowe Przetwarzanie Sygnału WIKAMP FTIMS\newline
+\end{thebibliography}
+
+\end{document}
