@@ -15,7 +15,7 @@ class SygnalCiagly:
         y = []
         x = np.linspace(t1, t1 + d, 1000)
         for i in range(1000):
-            y.append(random.randrange(-amplituda, amplituda + 1))
+            y.append(random.uniform(-amplituda, amplituda))
         return Sygnal(x, y)
 
     def szum_gaussowski(self, amplituda, t1, d):

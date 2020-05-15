@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5dc2c43-16e9-41d1-bcb1-5f2dbb3d399f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Zadanie2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Zadanie2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Filtracja.py" beforeDir="false" afterPath="$PROJECT_DIR$/Filtracja.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sygnal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sygnal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SygnalCiagly.py" beforeDir="false" afterPath="$PROJECT_DIR$/SygnalCiagly.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -314,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589129987741</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="-In class Filtracja:&#10;1.added methods: filtr_dolnoprzepustowy,filtr_srodkowoprzepustowy,okno_hanninga">
+      <created>1589390858128</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1589390858128</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,6 +359,7 @@
     <MESSAGE value="In script GUI:&#10;1. in method rysowanie_wykresu() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;2. in method wyswietl_otrzymane_parametry() added:  elif konwersja != &quot;KONWERSJA&quot;&#10;3  added method wykonaj_konwersje()&#10;4. added Checkbutton check_zad2&#10;5. added Combobox chosen_action_zad2" />
     <MESSAGE value="In script GUI:&#10;1. Added Combobox: czestotliwosc (probkowania), stopien_kwant,&#10;2.Added Checkbox: konwersja_checkbox&#10;2. Fiew design corrections&#10;3. clean code" />
     <MESSAGE value="-In class Sygnal:&#10;1. Added method operacja_splotu&#10;2. Added method korelacja_sygnalow&#10;-Added class Filtracja for later actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="-In class Sygnal:&#10;1. Added method operacja_splotu&#10;2. Added method korelacja_sygnalow&#10;-Added class Filtracja for later actions" />
+    <MESSAGE value="-In class Filtracja:&#10;1.added methods: filtr_dolnoprzepustowy,filtr_srodkowoprzepustowy,okno_hanninga" />
+    <option name="LAST_COMMIT_MESSAGE" value="-In class Filtracja:&#10;1.added methods: filtr_dolnoprzepustowy,filtr_srodkowoprzepustowy,okno_hanninga" />
   </component>
 </project>

@@ -328,9 +328,12 @@ class Sygnal:
 
     # do weryfikacji i poprawy
     @staticmethod
-    def operacja_splotu2(syg_pierwszy, filtrowane_wartosci, czestotliwosc):
+    def operacja_splotu2(syg_pierwszy, filtrowane_wartosci):
         lista_x_koncowa = []
         wartosci_splotu = []
+        print(len(syg_pierwszy.wartosci_y), "syg_pierwszy rozmiar")
+        print(len(filtrowane_wartosci), "filtrowane wartosci rozmiar")
+
         for i in range(len(syg_pierwszy.wartosci_y) + len(filtrowane_wartosci) - 1):
             sum = 0
             for j in range(len(syg_pierwszy.wartosci_y)):
@@ -342,10 +345,12 @@ class Sygnal:
             lista_x_koncowa.append(i)
 
         syg = Sygnal(lista_x_koncowa, wartosci_splotu)
-        print("operacja_splotu2")
-        print(len(lista_x_koncowa))
-        print(len(wartosci_splotu))
-        return syg.probkowanie(czestotliwosc)
+        print("Wartosci splotu syg1+filtr=", len(wartosci_splotu))
+        # print("operacja_splotu2")
+        # print(len(lista_x_koncowa))
+        # print(len(wartosci_splotu))
+        syg.sygDyskretny = True
+        return syg
 
     @staticmethod
     def operacja_splotu(syg_pierwszy, syg_drugi):
@@ -374,8 +379,9 @@ class Sygnal:
 
         return Sygnal(lista_x, lista_y)
 
+    #korelacja bezposrednia
     @staticmethod
-    def korelacja_sygnalow(syg_pierwszy, syg_drugi):
+    def korelacja_bezposrednia(syg_pierwszy, syg_drugi):
         lista_x = []
         lista_y = []
 
@@ -406,5 +412,9 @@ class Sygnal:
 
         for k in range(len(lista_y)):
             lista_x.append(k)
-        # czy robic to z czestotliwosica?
+
         return Sygnal(lista_x, lista_y)
+
+    @staticmethod
+    def korelacja_z_uzyciem_splotu(syg_pierwszy, syg_drugi):
+        print("in progress..")
