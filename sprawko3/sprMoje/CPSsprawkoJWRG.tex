@@ -27,7 +27,7 @@ Program ten jest wzbogaconą o powyższe funkcjonalności wersją programu z zad
 \item Splot - jedna z najważniejszych operacji, która wykorzystywana jest podczas filtracji sygnałów dyskretnych. Polega na przetwarzaniu dwóch sygnałów dyskretnych co w konsekwencji daje nam jeden sygnał dyskretny.
 \item Korelacja sygnałów - bardzo ważna rzecz w przetwarzaniu sygnałów. Używana gdy porównujemy ze sobą dwa sygnały np. sygnał oryginalny z sygnałem oryginalnym, ale przesuniętym na osi. Tak samo jak operacja splotu - podając dwa sygnały otrzymujemy jeden.
 \item Filtracja - jedna z podstawowych operacji w cyfrowym przetwarzaniu sygnałów. W jej procesie widmo sygnału podlega modyfikacji tj. odfiltrowanie składowych sygnału, których częstotliwości znajdują się w paśmie zaporowym, natomiast te, które znajdują się w paśmie przepustowym(pozostała część) nie są zmieniane lub ulegają małemu tłumieniu.
-\item Okno - postać odpowiedzi impulsowej filtru SOI??????????????
+\item Okno - postać odpowiedzi impulsowej filtru SOI??????
 \end{itemize}
 \subsection {Dodatkowo zaimplementowane warianty:}
 \begin {enumerate}
@@ -40,20 +40,22 @@ Program ten jest wzbogaconą o powyższe funkcjonalności wersją programu z zad
 \begin {itemize}
 \item filtr dolnoprzepustowy
 \item (F1) filtr środkowoprzepsutowy
-zaimplementowac operacje filtracji podstawiajac odpowiedz impulsowa filtru do wzoru na 
-splot ????
 \end {itemize}
-\item  Operacja splotu splotu 
+\item  Operacja splotu  
 \item Korelacja sygnałów dyskretnych 
+\begin {itemize}
+\item korelacja bezpośrednia
+\item korelacja z użyciem splotu
+\end {itemize}
 \end{enumerate}
 
 \section{Eksperymenty i wyniki}
 Eksperymenty zostały przez nas podzielone na: operacje splotu, operacje korelacji, operacje filtracji z wykorzystaniem okna. Skorzystamy z funkcji trójkątnej i sinusoidalnej z parametrami:
 \begin{itemize}
-\item amplituda: 15
-\item okres: 5
+\item amplituda: 5
+\item okres: 1
 \item czas początkowy: 0
-\item czas trwania: 20
+\item czas trwania: 10
 \end{itemize}
 \subsection{Operacje splotu}
 \begin{figure}[H]
@@ -78,13 +80,19 @@ Eksperymenty zostały przez nas podzielone na: operacje splotu, operacje korelac
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{1sinusKwantStopien5.png}
-\caption{Operacja korelacji przez splot fun sinus???}
+\caption{Operacja korelacji przez splot dla funkcji sinusoidalnej}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{1sinusKwantStopien5.png}
-\caption{Operacja korelacji przez splot fun trójkątn???}
+\caption{Operacja korelacji bezpośredniej dla funkcji trójkątnej}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{1sinusKwantStopien5.png}
+\caption{Operacja korelacji przez splot dla funkcji trójkątnej}
 \end{figure}
 
 \subsection{Operacje filtracji z wykorzystaniem okna}
@@ -99,25 +107,25 @@ Celem eksperymentu jest przedstawienie wyników procesu filtracji z wykorzystani
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
-\caption{Filtr dolnoprzepustowy z oknem Hanninga}
+\caption{Filtr dolnoprzepustowy dla funkcji sinusoidalnej}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
-\caption{Filtr dolnoprzepustowy z oknem Hanninga dla funkcji sinusoidalnej}
+\caption{Filtr dolnoprzepustowy dla funkcji trójkątnej}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
-\caption{Filtr dolnoprzepustowy z oknem Hanninga dla funkcji trójkątnej}
+\caption{Filtr środkowoprzepustowy z oknem Hanninga dla funkcji sinusoidalnej}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{8trojkatInterp1rzedu20.png}
-\caption{Filtr średnioprzepustowy z oknem Hanninga dla funkcji trójkątnej}
+\caption{Filtr środkowoprzepustowy z oknem Hanninga dla funkcji trójkątnej}
 \end{figure}
 
 \section{Wnioski}

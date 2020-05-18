@@ -373,8 +373,9 @@ class Sygnal:
                 sum += syg_drugi.wartosci_y[j] * syg_pierwszy.wartosci_y[i - j]
             lista_y.append(sum)
 
-        for k in range(len(lista_y)):
-            lista_x.append(k)
+        # for k in range(len(lista_y)):
+            # lista_x.append(k)
+            lista_x=np.linspace(syg_pierwszy.wartosci_x[0], syg_pierwszy.wartosci_x[-1]+syg_drugi.wartosci_x[-1], len(lista_y))
         # czy robic to z czestotliwosica?
 
         return Sygnal(lista_x, lista_y)
@@ -416,5 +417,8 @@ class Sygnal:
         return Sygnal(lista_x, lista_y)
 
     @staticmethod
-    def korelacja_z_uzyciem_splotu(syg_pierwszy, syg_drugi):
-        print("in progress..")
+    def korelacja_z_uzyciem_splotu(signal_a, signal_b):
+        if len(signal_a.wartosci_y) > len(signal_b.wartosci_y):
+            signal_a, signal_b = signal_b, signal_a
+        signal_a.wartosci_y.reverse()
+        return Sygnal.operacja_splotu(signal_a, signal_b)

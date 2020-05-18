@@ -3,6 +3,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 
+from Antena import Antena
 from Filtracja import Filtracja
 from Sygnal import Sygnal
 from SygnalCiagly import SygnalCiagly
@@ -288,25 +289,36 @@ if __name__ == '__main__':
     # print(len(x2))
     # print(len(y2))
     # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20)
-    # syg2 = sc.sygnal_prostokatny(15, 5, 0, 20)
-    # syg3 = Sygnal.operacja_splotu(syg, syg2)
-    # syg3.rysuj_sygnal()
+    # syg2 = sc.sygnal_trojkatny(15, 5, 0, 20)
+
+    syg = sc.sygnal_sinusoidalny(5, 1, 0, 10)
+    syg2 = sc.sygnal_prostokatny(5, 1, 0, 10)
+    syg3 = Sygnal.operacja_splotu(syg, syg2)
+    syg3.rysuj_sygnal()
     # syg.pokazWynikiParametrow()
 
     # filtr = Filtracja.filtr_dolnoprzepustowy(7, 250, 400,8)
     # filtr = Filtracja.filtr_dolny(50, 10, 200) #gitttt
-    filtr = Filtracja.filtr_srodkowoprzepustowy(100, 10, 200)
-    okno = Filtracja.okno_hanninga(filtr,100)
 
-    # syg = sc.sygnal_sinusoidalny(1, 1, 0, 4).probkowanie(400)  # ? ?
-    # filtr2 = Filtracja.okno_hanninga(filtr,67)
-    # syg2 = Sygnal.operacja_splotu2(syg, filtr2, 400)
-    # syg2.rysuj_sygnal()
 
-    syg = sc.sygnal_sinusoidalny(1, 1, 0, 4)
-    syg2 = sc.szum_o_rozkladzie_jednostajnym(1, 0, 4)
-    syg3 = syg.dodawanie(syg2)
-    syg3.sygDyskretny = True
-    syg3.rysuj_sygnal()  # szum
-    syg5 = Sygnal.operacja_splotu2(syg3, okno)
-    syg5.rysuj_sygnal()
+
+
+    # antena = Antena(100, 500, 10, 1, 10)
+    # antena.create_signal(1,30).rysuj_sygnal()
+
+
+
+
+    # ilosc = antena.antene_diffrence(1000)
+    # print(ilosc)
+
+    # filtr = Filtracja.filtr_srodkowoprzepustowy(100, 10, 200)
+    # okno = Filtracja.okno_hanninga(filtr,100)
+
+    # syg = sc.sygnal_sinusoidalny(1, 1, 0, 4)
+    # syg2 = sc.szum_o_rozkladzie_jednostajnym(1, 0, 4)
+    # syg3 = syg.dodawanie(syg2)
+    # syg3.sygDyskretny = True
+    # syg3.rysuj_sygnal()  # szum
+    # syg5 = Sygnal.operacja_splotu2(syg3, okno)
+    # syg5.rysuj_sygnal()
