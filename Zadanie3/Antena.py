@@ -38,7 +38,7 @@ class Antena:
         second_half = twined_values[int(len(twined_values) / 2):]
         max_sample = np.argmax(second_half)
         t_delay = max_sample / self.czestotliwosc_probkowania
-        return t_delay
+        return t_delay * abstract_speed / (max_sample + len(second_half))/2
 
     def original_distance(self):
         values = []

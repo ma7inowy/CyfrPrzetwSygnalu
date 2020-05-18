@@ -291,34 +291,36 @@ if __name__ == '__main__':
     # syg = sc.sygnal_sinusoidalny(15, 5, 0, 20)
     # syg2 = sc.sygnal_trojkatny(15, 5, 0, 20)
 
-    syg = sc.sygnal_sinusoidalny(5, 1, 0, 10)
-    syg2 = sc.sygnal_prostokatny(5, 1, 0, 10)
-    syg3 = Sygnal.operacja_splotu(syg, syg2)
-    syg3.rysuj_sygnal()
+    # syg = sc.sygnal_trojkatny(5, 1, 0, 10)
+    # syg2 = sc.sygnal_prostokatny(5, 1, 0, 10)
+    # syg3 = Sygnal.korelacja_z_uzyciem_splotu(syg, syg2)
+    # syg3.rysuj_sygnal()
+
     # syg.pokazWynikiParametrow()
 
     # filtr = Filtracja.filtr_dolnoprzepustowy(7, 250, 400,8)
     # filtr = Filtracja.filtr_dolny(50, 10, 200) #gitttt
-
-
-
-
-    # antena = Antena(100, 500, 10, 1, 10)
-    # antena.create_signal(1,30).rysuj_sygnal()
-
-
-
-
+######################################################ANTENA
+    antena = Antena(100, 500, 10, 1, 10)
+    antena.create_signal(1,30).rysuj_sygnal()
+    print(antena.antene_diffrence(1000))
+####################################################
     # ilosc = antena.antene_diffrence(1000)
     # print(ilosc)
 
     # filtr = Filtracja.filtr_srodkowoprzepustowy(100, 10, 200)
     # okno = Filtracja.okno_hanninga(filtr,100)
 
-    # syg = sc.sygnal_sinusoidalny(1, 1, 0, 4)
-    # syg2 = sc.szum_o_rozkladzie_jednostajnym(1, 0, 4)
+    # gittttttt filtr okno########################
+    # filtr = Filtracja.filtr_srodkowoprzepustowy(57, 1, 250)  # gitttt
+    # okno = Filtracja.okno_hanninga(filtr, 57)
+    # syg = sc.sygnal_prostokatny(5, 3, 0, 10)
+    # syg2 = sc.szum_o_rozkladzie_jednostajnym(5, 0, 10)
     # syg3 = syg.dodawanie(syg2)
     # syg3.sygDyskretny = True
     # syg3.rysuj_sygnal()  # szum
-    # syg5 = Sygnal.operacja_splotu2(syg3, okno)
-    # syg5.rysuj_sygnal()
+    # syg4 = Sygnal.operacja_splotu2(syg3, okno)
+    # syg4.rysuj_sygnal()
+####################################
+# syg5 = Sygnal.operacja_splotu2(syg3, okno)
+# syg5.rysuj_sygnal()

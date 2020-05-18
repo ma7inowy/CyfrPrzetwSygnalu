@@ -341,8 +341,11 @@ class Sygnal:
                     sum += syg_pierwszy.wartosci_y[j] * filtrowane_wartosci[len(filtrowane_wartosci) - (i - j) - 1]
             wartosci_splotu.append(sum)
 
-        for i in range(len(wartosci_splotu)):
-            lista_x_koncowa.append(i)
+        # for i in range(len(wartosci_splotu)):
+        #     lista_x_koncowa.append(i)
+
+        lista_x_koncowa = np.linspace(syg_pierwszy.wartosci_x[0], syg_pierwszy.wartosci_x[-1] + filtrowane_wartosci[-1],
+                              len(wartosci_splotu))
 
         syg = Sygnal(lista_x_koncowa, wartosci_splotu)
         print("Wartosci splotu syg1+filtr=", len(wartosci_splotu))
@@ -411,8 +414,10 @@ class Sygnal:
                 k2 += 1
             lista_y.append(sum)
 
-        for k in range(len(lista_y)):
-            lista_x.append(k)
+        # for k in range(len(lista_y)):
+        #     lista_x.append(k)
+        lista_x = np.linspace(syg_pierwszy.wartosci_x[0], syg_pierwszy.wartosci_x[-1] + syg_drugi.wartosci_x[-1],
+                              len(lista_y))
 
         return Sygnal(lista_x, lista_y)
 
