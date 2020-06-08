@@ -5,6 +5,7 @@ import numpy as np
 
 from Antena import Antena
 from Filtracja import Filtracja
+from Furier import Furier, FalkowaTransformacja
 from Sygnal import Sygnal
 from SygnalCiagly import SygnalCiagly
 from SygnalDyskretny import SygnalDyskretny
@@ -301,26 +302,39 @@ if __name__ == '__main__':
     # filtr = Filtracja.filtr_dolnoprzepustowy(7, 250, 400,8)
     # filtr = Filtracja.filtr_dolny(50, 10, 200) #gitttt
 ######################################################ANTENA
-    antena = Antena(100, 500, 10, 1, 10)
-    antena.create_signal(1,30).rysuj_sygnal()
-    print(antena.antene_diffrence(1000))
+# antena = Antena(100, 500, 10, 1, 10)
+# antena.create_signal(1,30).rysuj_sygnal()
+# print(antena.antene_diffrence(1000))
 ####################################################
-    # ilosc = antena.antene_diffrence(1000)
-    # print(ilosc)
+# ilosc = antena.antene_diffrence(1000)
+# print(ilosc)
 
-    # filtr = Filtracja.filtr_srodkowoprzepustowy(100, 10, 200)
-    # okno = Filtracja.okno_hanninga(filtr,100)
+# filtr = Filtracja.filtr_srodkowoprzepustowy(100, 10, 200)
+# okno = Filtracja.okno_hanninga(filtr,100)
 
-    # gittttttt filtr okno########################
-    # filtr = Filtracja.filtr_srodkowoprzepustowy(57, 1, 250)  # gitttt
-    # okno = Filtracja.okno_hanninga(filtr, 57)
-    # syg = sc.sygnal_prostokatny(5, 3, 0, 10)
-    # syg2 = sc.szum_o_rozkladzie_jednostajnym(5, 0, 10)
-    # syg3 = syg.dodawanie(syg2)
-    # syg3.sygDyskretny = True
-    # syg3.rysuj_sygnal()  # szum
-    # syg4 = Sygnal.operacja_splotu2(syg3, okno)
-    # syg4.rysuj_sygnal()
+# gittttttt filtr okno########################
+# filtr = Filtracja.filtr_srodkowoprzepustowy(57, 1, 250)  # gitttt
+# okno = Filtracja.okno_hanninga(filtr, 57)
+# syg = sc.sygnal_prostokatny(5, 3, 0, 10)
+# syg2 = sc.szum_o_rozkladzie_jednostajnym(5, 0, 10)
+# syg3 = syg.dodawanie(syg2)
+# syg3.sygDyskretny = True
+# syg3.rysuj_sygnal()  # szum
+# syg4 = Sygnal.operacja_splotu2(syg3, okno)
+# syg4.rysuj_sygnal()
 ####################################
 # syg5 = Sygnal.operacja_splotu2(syg3, okno)
 # syg5.rysuj_sygnal()
+
+#################################
+# ZAD4
+syg = SygnalCiagly()
+sygnal_s1 = syg.sygnal_s1(0, 10)
+s2 = syg.signal2()
+# sygnal_sinus = syg.sygnal_sinusoidalny(1, 1, 0, 4)
+furier = Furier()
+# furier.fast_transform(s2)
+falka = FalkowaTransformacja()
+syg3 = falka.transformation(s2)
+syg4 = falka.reverse_transform(syg3)
+syg4.rysuj_sygnal()

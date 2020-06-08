@@ -8,7 +8,6 @@ from Sygnal import Sygnal
 
 class SygnalCiagly:
 
-
     def szum_o_rozkladzie_jednostajnym(self, amplituda, t1, d):
         # t1 - czas poczatkowyy
         # d - czas trwania sygnalu
@@ -19,9 +18,6 @@ class SygnalCiagly:
         return Sygnal(x, y)
 
     def szum_gaussowski(self, amplituda, t1, d):
-        # probl3m bo nigdzie nie zostaine wykorzystana amplituda i o chuj chodzi !!!
-        # A ta funkcja to rozklad GESTOSCI prawdopodobienstwa wystapienia jakiejs wartosci amplitudy np w przedziale
-        # -10 i 10, ale gdzie niby tutaj dopisac amplitude?
         u = 0
         odch_standard = 1
         y = []
@@ -67,8 +63,7 @@ class SygnalCiagly:
     def sygnal_prostokatny(self, amplituda, okres_T, t1, d):
         y = []
         x = np.linspace(t1, t1 + d, 1000)
-        kw = okres_T / 2 / okres_T  # skoro ma byc czas trwania wart max przez okres, dlatego wlasnie takie wzor
-        # dlaczego za K nie mozna int(x[i]) tylko int(x[i]/okres_T) skoro k e C
+        kw = okres_T / 2 / okres_T
         for i in range(1000):
             k = int(x[i] / okres_T)
             if k * okres_T + t1 <= x[i] < kw * okres_T + okres_T * k + t1:
@@ -118,3 +113,21 @@ class SygnalCiagly:
             else:
                 y.append(0)
         return Sygnal(x, y)
+
+    def sygnal_s1(self, t1, d):
+        x = np.linspace(t1, t1 + d, 512)
+        y = []
+        for i in range(512):
+            wart_y = 2 * math.sin(((2 * math.pi / 2)*x[i]) + (math.pi / 2)) + 5 * math.sin(
+                (2 * math.pi / 0.5 * x[i]) + (math.pi / 2))
+            y.append(wart_y)
+
+        return Sygnal(x, y)
+
+    def signal2(self):
+            t1, d, n, t = 0, 10, 512, 1 / 16
+            samples = np.linspace(t1, d, n)
+            values1 = [(2 * math.sin(math.pi / 2 + math.pi * (x - t1))) for x in samples]
+            values2 = [(5 * math.sin(math.pi / 2 + 4 * math.pi * (x - t1))) for x in samples]
+            values = [values1[i] + values2[i] for i in range(len(values2))]
+            return Sygnal(samples, values)
