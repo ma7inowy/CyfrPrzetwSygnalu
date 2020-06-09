@@ -329,12 +329,27 @@ if __name__ == '__main__':
 #################################
 # ZAD4
 syg = SygnalCiagly()
+
 sygnal_s1 = syg.sygnal_s1(0, 10)
-s2 = syg.signal2()
-# sygnal_sinus = syg.sygnal_sinusoidalny(1, 1, 0, 4)
+# sygnal_s1.rysuj_sygnal()
+# s2 = syg.signal2()
+
+# sygnal_sinus = syg.sygnal_sinusoidalny(1, 1, 0, 10)
 furier = Furier()
+fur2 = furier.fast_transform(sygnal_s1)
+furier.reverse_transform(fur2).rysuj_sygnal()
+
+
+
+
+# furier.fast_transform(sygnal_sinus)
+# print("michala:")
+# furier.transform(s2)
 # furier.fast_transform(s2)
-falka = FalkowaTransformacja()
-syg3 = falka.transformation(s2)
-syg4 = falka.reverse_transform(syg3)
-syg4.rysuj_sygnal()
+
+
+# falka
+# falka = FalkowaTransformacja()
+# syg3 = falka.transformation(sygnal_s1)
+# syg4 = falka.reverse_transform(syg3)
+# syg4.rysuj_sygnal()

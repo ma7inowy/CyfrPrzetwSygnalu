@@ -1,4 +1,6 @@
 import cmath
+import time
+
 import numpy as np
 
 from Sygnal import Sygnal
@@ -24,6 +26,7 @@ class Furier:
     # twiddledfactor to wcoefficient
     # Dyskretna transformata furiera do W1, W2
     def transform(self, signal):
+        start = time.time()
         complex_values = self.real_to_complex(signal.wartosci_y)
         values = []
         for i in range(0, len(signal.wartosci_y)):
@@ -31,6 +34,8 @@ class Furier:
             for j in range(0, len(signal.wartosci_y)):
                 cmplx += complex_values[j] * self.wcoefficient(i, j, len(signal.wartosci_y))
             values.append(cmplx / len(signal.wartosci_y))
+        end = time.time()
+        print("dyskretna transformata furiera: ", round(end - start, 6))
 
             # lista_x = []
             # for ii in range(len(values)):
@@ -49,13 +54,17 @@ class Furier:
                 val += (signal.wartosci_y[j] * self.reverse_wcoefficient(i, j, len(signal.wartosci_y))).real
             values.append(val)
         signal = Sygnal(signal.wartosci_x, values)
+
         return signal
 
     # szybka dla czasu a ja mam dla czestotliwosci (F2)
     def fast_transform(self, signal):
+        start = time.time()
         complex_values = self.real_to_complex(signal.wartosci_y)
         transformed = self.switch_samples(complex_values)
         values = [x / len(signal.wartosci_y) for x in transformed]
+        end = time.time()
+        print("szybka transformata furiera: ", round(end - start, 6))
 
         show_complex_signal_w1(Sygnal(signal.wartosci_x, values))
         show_complex_signal_w2(Sygnal(signal.wartosci_x, values))
@@ -106,7 +115,7 @@ lista_G = [-0.129, -0.224, 0.8365, -0.482]
 class FalkowaTransformacja:
 
     def transformation(self, signal):
-        # start = time.time()
+        start = time.time()
         h_samples = np.convolve(signal.wartosci_y, lista_H)
         g_samples = np.convolve(signal.wartosci_y, lista_G)
         h_half = [x for i, x in enumerate(h_samples) if i % 2 == 0]
@@ -114,8 +123,8 @@ class FalkowaTransformacja:
         values = []
         for i in range(0, len(g_half)):
             values.append(complex(h_half[i], g_half[i]))
-        # end = time.time()
-        # print("dyskretna transformata falkowa: ", round(end - start, 6))
+        end = time.time()
+        print("dyskretna transformata falkowa: ", round(end - start, 6))
         signal = Sygnal(np.linspace(0, 10, len(values)), values)
         show_complex_signal_w1(signal)
         show_complex_signal_w2(signal)

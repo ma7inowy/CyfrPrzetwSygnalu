@@ -33,8 +33,8 @@ class SygnalCiagly:
         # self.t1 = t1
         # self.d = d
         y = []
-        x = np.linspace(t1, t1 + d, 1000)
-        for i in range(1000):
+        x = np.linspace(t1, t1 + d, 512)
+        for i in range(512):
             y.append(amplituda * math.sin(2 * math.pi / okres_T * (x[i] - t1)))
 
         syg = Sygnal(x, y)
